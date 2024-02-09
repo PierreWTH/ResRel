@@ -1,12 +1,8 @@
 ## Installation du projet 
 
-### Aller dans le répértoire project :
+### Dans /api copier le fichier .env.example et le renommer .env
 
-`cd api && cd project`
-
-### Copier le fichier .env.example et le renommer .env
-
-`cp .env.example .env`
+` cd api && cp .env.example .env`
 
 ### Construire les containers :
 
