@@ -31,9 +31,18 @@ services:
       - "8000:80"
     volumes:
       - ./docker/vhosts:/etc/apache2/sites-enabled
-      - ./:/var/www
+      - ./api:/var/www
     networks:
       - dev
+  
+  app:
+    build: app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
 
 networks:
   dev:
