@@ -12,6 +12,15 @@
 
 `composer install`
 
+## Créer la base de données
+
+`bin/console m:mi`
+`bin/console d:m:m`
+
+### Charger les fixtures
+
+`bin/console doctrine:fixtures:load`
+
 ### L'application est disponible : 
 
 [Symfony](http://localhost:8000) 
