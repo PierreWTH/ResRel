@@ -22,6 +22,14 @@
 
 `bin/console doctrine:fixtures:load`
 
+### Générer les clés JWT et ajouter la passphrase pour la connexion
+
+`bin/console lexik:jwt:generate-keypair`
+
+Vous pouvez maintenant ajouter la passhrase dans le .env :
+
+`JWT_PASSPHRASE=your_passhrase`
+
 ### L'application est disponible : 
 
 [Symfony](http://localhost:8000) 
