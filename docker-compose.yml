@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     image: mysql
-    container_name: db_ResRel
+    container_name: db_resrel
     restart: always
     volumes:
       - db-data:/var/lib/mysql
@@ -14,7 +14,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin_ResRel
+    container_name: phpmyadmin_resrel
     depends_on:
       - db
     ports:
@@ -26,7 +26,7 @@ services:
 
   www:
     build: docker
-    container_name: www_ResRel
+    container_name: www_resrel
     ports:
       - "8000:80"
     volumes:
@@ -37,6 +37,7 @@ services:
   
   app:
     build: app
+    container_name: app_resrel
     command: npm run dev
     ports:
       - "3000:3000"
