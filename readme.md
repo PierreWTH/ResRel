@@ -12,10 +12,10 @@
 
 `composer install`
 
-### Créer la base de données depuis le container www_ResRel et faire les migrations
+### Créer la base de données depuis le container www_resrel et faire les migrations
 
-`docker exec -it www_ResRel bash`
-`bin/console doctrine:database:create`
+`docker exec -it www_resrel bash`\
+`bin/console doctrine:database:create`\
 `bin/console d:m:m`
 
 ### Charger les fixtures
