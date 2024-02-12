@@ -12,7 +12,7 @@
 
 `composer install`
 
-## Créer la base de données depuis le container www_ResRel
+### Créer la base de données depuis le container www_ResRel
 
 `docker exec -it www_ResRel bash`
 `bin/console m:mi`
