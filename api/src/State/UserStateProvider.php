@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\State\ProviderInterface;
+use App\ApiResource\User as UserResource;
 
 final class UserStateProvider implements ProviderInterface 
 {
@@ -20,9 +21,13 @@ final class UserStateProvider implements ProviderInterface
             
             $users = $this->userRepository->findAll();
 
-            dd($users);
+            $resourceUsers = [];
             
-            return $users;
+            foreach($users as $user){
+                $resourceUsers[] = $user->toResource();
+            }
+            
+            return $resourceUsers;
         }
     }   
 }
