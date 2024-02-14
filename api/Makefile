@@ -1,11 +1,8 @@
 # Variables
-DOCKER = docker
 DOCKER_COMPOSE = docker-compose
-EXEC = $(DOCKER) exec -w /var/www/project www_SFDocker
-PHP = $(EXEC) php
-COMPOSER = $(EXEC) composer
+EXEC =  docker exec -it www_resrel bash
 NPM = $(EXEC) npm
-SYMFONY_CONSOLE = $(PHP) bin/console
+SYMFONY_CONSOLE = bin/console
 
 # Colors
 GREEN = /bin/echo -e "\x1b[32m\#\# $1\x1b[0m"
@@ -13,42 +10,33 @@ RED = /bin/echo -e "\x1b[31m\#\# $1\x1b[0m"
 
 ## —— 🔥 App ——
 init: ## Init the project
-	$(MAKE) start
+	$(MAKE) docker-start
+	cp .env.example .env
 	$(MAKE) composer-install
-	$(MAKE) npm-install
-	@$(call GREEN,"The application is available at: http://127.0.0.1:8000/.")
+	$(MAKE) database-init
+	$(MAKE) jwt-keys
+
+	@$(call GREEN,"Symfony is available at: http://127.0.0.1:8000/.")
+	@$(call GREEN,"React is available at: http://127.0.0.1:3000/.")
+	@$(call GREEN,"PhpMyAdmin is available at: http://127.0.0.1:8080/.")
 
 cache-clear: ## Clear cache
-	$(SYMFONY_CONSOLE) cache:clear
+	$(EXEC) -c "bin/console cache:clear; exit"
 
 ## —— 🐳 Docker ——
-start: ## Start app
-	$(MAKE) docker-start 
+
 docker-start: 
 	$(DOCKER_COMPOSE) up -d
 
-stop: ## Stop app
-	$(MAKE) docker-stop
-docker-stop: 
-	$(DOCKER_COMPOSE) stop
-	@$(call RED,"The containers are now stopped.")
+jwt-keys: ## Generate JWT keys
+	$(EXEC) -c "bin/console lexik:jwt:generate-keypair; exit"
 
 ## —— 🎻 Composer ——
 composer-install: ## Install dependencies
-	$(COMPOSER) install
+	composer install
 
 composer-update: ## Update dependencies
 	$(COMPOSER) update
-
-## —— 🐈 NPM —————————————————————————————————————————————————————————————————
-npm-install: ## Install all npm dependencies
-	$(NPM) install
-
-npm-update: ## Update all npm dependencies
-	$(NPM) update
-
-npm-watch: ## Update all npm dependencies
-	$(NPM) run watch
 
 ## —— 📊 Database ——
 database-init: ## Init database
@@ -58,10 +46,10 @@ database-init: ## Init database
 	$(MAKE) database-fixtures-load
 
 database-drop: ## Create database
-	$(SYMFONY_CONSOLE) d:d:d --force --if-exists
+	$(EXEC) -c "bin/console d:d:d --force --if-exists; exit"
 
 database-create: ## Create database
-	$(SYMFONY_CONSOLE) d:d:c --if-not-exists
+	$(EXEC) -c "bin/console d:d:c --if-not-exists"
 
 database-remove: ## Drop database
 	$(SYMFONY_CONSOLE) d:d:d --force --if-exists
