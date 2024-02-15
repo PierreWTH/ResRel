@@ -1,6 +1,6 @@
 ## Installation du projet 
 
-Ce projet est un projet de test d'améliorer mes connaissances dans la mise en place d'un environnement Docker, de la création et de la manipulation d'une API Symfony, et de l'intération avec celle-ci avec React. 
+Ce projet est un projet de test afin d'améliorer mes connaissances dans la mise en place d'un environnement Docker, de la création et de la manipulation d'une API Symfony, et de l'interaction avec celle-ci grâce à React. 
 
 Il comporte : 
 * Le back en Symfony sous forme d'API
@@ -17,7 +17,7 @@ Pour installer l'application, lancez simplement cette commande à la racine du p
 ```
 cd api && make init
 ```
-Elle vas lancer les containers, mettre en place l'environnement, créer la base de donnée et celle de test, et générer les clés JWT. 
+Elle va lancer les containers, mettre en place l'environnement, créer la base de donnée et celle de test, et générer les clés JWT. 
 
 ### Renseigner la passphrase
 
