@@ -1,35 +1,31 @@
 ## Installation du projet 
 
-### Construire les containers :
+Ce projet est un projet de test d'améliorer mes connaissances dans la mise en place d'un environnement Docker, de la création et de la manipulation d'une API Symfony, et de l'intération avec celle-ci avec React. 
 
-`docker compose up -d`
+Il comporte : 
+* Le back en Symfony sous forme d'API
+* Le front en react
+* Une base de donnée MySQL
+* PHPMyAdmin
 
-### Dans /api copier le fichier .env.example et le renommer .env
+Chaque partie de l'application est dans un container docker.
 
-` cd api && cp .env.example .env`
+### Initialiser le projet
 
-### Installer les dépendances depuis api/ : 
+Pour installer l'application, lancez simplement cette commande à la racine du projet :
 
-`composer install`
+```
+cd api && make init
+```
+Elle vas lancer les containers, mettre en place l'environnement, créer la base de donnée et celle de test, et générer les clés JWT. 
 
-### Créer la base de données depuis le container www_resrel et faire les migrations
+### Renseigner la passphrase
 
-`docker exec -it www_resrel bash`\
-`bin/console doctrine:database:create`\
-`bin/console d:m:m`
+Il ne reste plus qu'a ajouter la passphrase dans le .env pour la connexion. 
 
-### Charger les fixtures
-
-`bin/console doctrine:fixtures:load`
-
-### Générer les clés JWT et ajouter la passphrase pour la connexion
-
-`bin/console lexik:jwt:generate-keypair`
-
-Vous pouvez maintenant ajouter la passhrase dans le .env :
-
-`JWT_PASSPHRASE=your_passhrase`
-
+```
+JWT_PASSPHRASE=your_passhrase
+```
 ### L'application est disponible : 
 
 [Symfony](http://localhost:8000) 

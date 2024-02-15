@@ -29,7 +29,7 @@ docker-start:
 	$(DOCKER_COMPOSE) up -d
 
 jwt-keys: ## Generate JWT keys
-	$(EXEC) -c "bin/console lexik:jwt:generate-keypair; exit"
+	$(EXEC) -c "bin/console lexik:jwt:generate-keypair"
 
 ## —— 🎻 Composer ——
 composer-install: ## Install dependencies
@@ -44,33 +44,52 @@ database-init: ## Init database
 	$(MAKE) database-create
 	$(MAKE) database-migrate
 	$(MAKE) database-fixtures-load
+	$(MAKE) database-drop-test
+	$(MAKE) database-create-test
+	$(MAKE) database-migrate-test
+	$(MAKE) database-fixtures-load-test
+	@$(call GREEN,"Database and test database have been initialized.")
 
-database-drop: ## Create database
-	$(EXEC) -c "bin/console d:d:d --force --if-exists; exit"
+database-drop: ## Drop database
+	$(EXEC) -c "bin/console d:d:d --force --if-exists"
 
 database-create: ## Create database
 	$(EXEC) -c "bin/console d:d:c --if-not-exists"
 
-database-remove: ## Drop database
-	$(SYMFONY_CONSOLE) d:d:d --force --if-exists
-
 database-migration: ## Make migration
-	$(SYMFONY_CONSOLE) make:migration
+	$(EXEC) -c "bin/console make:migration"
 
 migration: ## Alias : database-migration
-	$(MAKE) database-migration
+	$(EXEC) -c "bin/console database-migration"
 
 database-migrate: ## Migrate migrations
-	$(SYMFONY_CONSOLE) d:m:m --no-interaction
+	$(EXEC) -c "bin/console d:m:m --no-interaction"
 
 migrate: ## Alias : database-migrate
-	$(MAKE) database-migrate
+	$(EXEC) -c "bin/console database-migrate"
 
 database-fixtures-load: ## Load fixtures
-	$(SYMFONY_CONSOLE) d:f:l --no-interaction
+	$(EXEC) -c "bin/console d:f:l --no-interaction"
+
+
 
 fixtures: ## Alias : database-fixtures-load
-	$(MAKE) database-fixtures-load
+	$(EXEC) -c "bin/console database-fixtures-load"
+
+## —— 📊 Database test ——
+
+database-drop-test: ## Drop database
+	$(EXEC) -c "bin/console d:d:d --env=test --force --if-exists"
+
+database-create-test: ## Create test database
+	$(EXEC) -c "bin/console d:d:c --env=test --if-not-exists"
+
+database-migrate-test: ## Migrate migrations
+	$(EXEC) -c "bin/console d:m:m --env=test --no-interaction"
+
+database-fixtures-load-test: ## Load test fixtures
+	$(EXEC) -c "bin/console d:f:l --env=test --no-interaction"
+
 
 ## —— 🛠️  Others ——
 help: ## List of commands
