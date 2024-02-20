@@ -38,6 +38,11 @@ composer-install: ## Install dependencies
 composer-update: ## Update dependencies
 	$(COMPOSER) update
 
+## —— Tests ——
+
+all-tests: ## Run tests
+	$(EXEC) -c "bin/phpunit"
+
 ## —— 📊 Database ——
 database-init: ## Init database
 	$(MAKE) database-drop
