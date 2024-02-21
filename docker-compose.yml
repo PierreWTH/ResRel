@@ -27,8 +27,8 @@ services:
   www:
     build: docker
     container_name: www_resrel
-    expose:
-      - 80
+    ports:
+      - "8000:80"
     volumes:
       - ./docker/vhosts:/etc/apache2/sites-enabled
       - ./api:/var/www
