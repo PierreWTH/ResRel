@@ -27,8 +27,8 @@ services:
   www:
     build: docker
     container_name: www_resrel
-    ports:
-      - "8000:80"
+    expose:
+      - 80
     volumes:
       - ./docker/vhosts:/etc/apache2/sites-enabled
       - ./api:/var/www
@@ -36,14 +36,17 @@ services:
       - dev
   
   app:
-    build: app
+    image: node:latest
     container_name: app_resrel
-    command: npm run dev
+    working_dir: /app
+    command: > 
+      sh -c "npm i && npm run dev"
     ports:
       - "3000:3000"
     volumes:
-      - ./app:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./app:/app
+    networks:
+      - dev
 
 networks:
   dev:

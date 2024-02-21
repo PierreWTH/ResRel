@@ -33,7 +33,7 @@ jwt-keys: ## Generate JWT keys
 
 ## —— 🎻 Composer ——
 composer-install: ## Install dependencies
-	composer install
+	$(EXEC) -c "composer install"
 
 composer-update: ## Update dependencies
 	$(COMPOSER) update
