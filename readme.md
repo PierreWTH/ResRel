@@ -19,13 +19,6 @@ cd api && make init
 ```
 Elle va lancer les containers, mettre en place l'environnement, créer la base de donnée et celle de test, et générer les clés JWT. 
 
-### Renseigner la passphrase
-
-Il ne reste plus qu'a ajouter la passphrase dans le .env pour la connexion. 
-
-```
-JWT_PASSPHRASE=your_passhrase
-```
 ### L'application est disponible : 
 
 [Symfony](http://localhost:8000) 
