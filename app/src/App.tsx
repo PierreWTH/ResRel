@@ -1,26 +1,22 @@
 import './App.css'
 import axios from "axios";
 import React from 'react'
+import { User } from './interfaces/user.interface'
 
 export default function App() {
-  const [users, setUsers] = React.useState([])
-  
-  React.useEffect(() => {
-    axios.get('api/users').then((response) => {
-      console.log(response.data);
-      setUsers(response.data);
-    });
-  }, []);
+const [users, setUsers] = React.useState<User[]>([])
 
-  if (!users) return null;
+axios.get<User[]>('/api/users').then((response) => {
+setUsers(response.data)
+})
+
+
     
   return (
       <div>
-        <ul>
-          {users.map(user => (
+        {users.map(user => (
           <li key={user.id}>{user.email}</li>
-          ))}
-        </ul>
+        ))}
       </div>
   )
 }
