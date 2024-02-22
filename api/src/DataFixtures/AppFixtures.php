@@ -22,6 +22,8 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setEmail("user@resrel.com");
         $user->setRoles(["ROLE_USER"]);
+        $user->setLastname("White");
+        $user->setFirstname("Walter");
         $user->setPassword($this->userPasswordHasher->hashPassword($user, "password"));
         $manager->persist($user);
         
@@ -29,6 +31,8 @@ class AppFixtures extends Fixture
         $userAdmin = new User();
         $userAdmin->setEmail("admin@resrel.com");
         $userAdmin->setRoles(["ROLE_ADMIN"]);
+        $userAdmin->setLastname("Pinkman");
+        $userAdmin->setFirstname("Jessy");
         $userAdmin->setPassword($this->userPasswordHasher->hashPassword($userAdmin, "password"));
         $manager->persist($userAdmin);
 
