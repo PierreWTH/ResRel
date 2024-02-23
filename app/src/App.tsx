@@ -1,22 +1,13 @@
 import './App.css'
-import axios from "axios";
-import React from 'react'
-import { User } from './interfaces/user.interface'
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
 
-export default function App() {
-const [users, setUsers] = React.useState<User[]>([])
-
-axios.get<User[]>('/api/users').then((response) => {
-setUsers(response.data)
-})
-
-
-    
+function App() {
   return (
-      <div>
-        {users.map(user => (
-          <li key={user.id}>{user.email}</li>
-        ))}
-      </div>
-  )
+    <div className="App">
+      <ToastContainer />
+    </div>
+  );
 }
+
+export default App;
