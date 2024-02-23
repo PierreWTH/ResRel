@@ -52,7 +52,7 @@ export const UserProvider = ({ children }: Props) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
           const UserObj = {
-            email: res?.data.email,
+            username: res?.data.username,
           };
           localStorage.setItem("user", JSON.stringify(UserObj));
           setToken(res?.data.token);
@@ -65,13 +65,13 @@ export const UserProvider = ({ children }: Props) => {
       .catch((e) => toast.warning("Error: " + e));
   };
 
-  const loginUser = async (email: string, password: string) => {
-    await loginAPI(email, password)
+  const loginUser = async (username: string, password: string) => {
+    await loginAPI(username, password)
       .then((res) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
           const UserObj = {
-            email: res?.data.email,
+            username: res?.data.username,
           };
           localStorage.setItem("user", JSON.stringify(UserObj));
           setToken(res?.data.token);
