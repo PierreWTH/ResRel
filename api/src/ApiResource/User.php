@@ -20,6 +20,8 @@ class User
 
     public string $email;
 
+    public string $username;
+
     public string $firstname;
 
     public string $lastname;

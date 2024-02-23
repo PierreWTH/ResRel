@@ -19,6 +19,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $username = null;
+
     #[ORM\Column]
     private array $roles = [];
 
@@ -95,14 +98,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
+    public function getUsername(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setUsername(string $username): static
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /* *
      * Fetch user for authentication
      * @return string
      */
-    public function getUsername(): string {
+    /* public function getUsername(): string {
 
         return $this->getUserIdentifier();
-    }
+    } */
 
     /**
      * @see UserInterface
@@ -120,6 +135,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $userResource->email = $this->getEmail();
         $userResource->firstname = $this->getFirstname();
         $userResource->lastname = $this->getLastname();
+        $userResource->username = $this->getUsername();
 
 
         return $userResource;
