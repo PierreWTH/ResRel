@@ -15,9 +15,9 @@ class AuthenticationTest extends ApiTestCase
 
         // Get a token 
 
-        $response = $client->request('POST', '/api/login_check', [
+        $response = $client->request('POST', '/login_check', [
             'json' => [
-                'username' => 'user@resrel.com',
+                'email' => 'user@resrel.com',
                 'password' => 'password',
             ],
         ]);
