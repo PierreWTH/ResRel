@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <UserProvider>
-        <ToastContainer />
+        <ToastContainer hideProgressBar={true}></ToastContainer>
         <Outlet />
       </UserProvider>
     </>

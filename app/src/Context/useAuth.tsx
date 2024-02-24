@@ -12,7 +12,7 @@ type UserContextType = {
   user: UserProfile | null;
   token: string | null;
   registerUser: (email: string, username: string, password: string) => void;
-  loginUser: (username: string, password: string) => void;
+  loginUser: (email: string, password: string) => void;
   logoutUser: () => void;
   isLoggedIn: () => boolean;
 };
@@ -52,12 +52,13 @@ export const UserProvider = ({ children }: Props) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
           const UserObj = {
+            email: res?.data.email,
             username: res?.data.username,
           };
           localStorage.setItem("user", JSON.stringify(UserObj));
           setToken(res?.data.token);
           setUser(UserObj!);
-          toast.success("Login success ! ");
+          toast.success("Connexion réussie !");
           // Redirect user
           navigate("/home");
         }
@@ -65,36 +66,36 @@ export const UserProvider = ({ children }: Props) => {
       .catch((e) => toast.warning("Error: " + e));
   };
 
-  const loginUser = async (username: string, password: string) => {
-    await loginAPI(username, password)
+  const loginUser = async (email: string, password: string) => {
+    await loginAPI(email, password)
       .then((res) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
           const UserObj = {
-            username: res?.data.username,
+            email: res?.data.email,
           };
           localStorage.setItem("user", JSON.stringify(UserObj));
           setToken(res?.data.token);
           setUser(UserObj!);
           toast.success("Login success ! ");
           // Redirect user
-          navigate("/home");
+          navigate("/");
         }
       })
       .catch((e) => toast.warning("Error: " + e));
   };
 
   const isLoggedIn = () => {
-    return !!user
-  }
-  
+    return !!user;
+  };
+
   const logoutUser = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
     setToken("");
     navigate("/");
-  }
+  };
 
   return (
     <UserContext.Provider
@@ -104,10 +105,10 @@ export const UserProvider = ({ children }: Props) => {
         token,
         logoutUser,
         isLoggedIn,
-        registerUser
+        registerUser,
       }}
     >
-        {isReady ? children : null}
+      {isReady ? children : null}
     </UserContext.Provider>
   );
 };

@@ -2,12 +2,12 @@ import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
 import { UserProfileToken } from "../Types/User.ts";
 
-const api = "/api/api/";
+const api = "/api/";
 
-export const loginAPI = async (username: string, password: string) => {
+export const loginAPI = async (email: string, password: string) => {
   try {
     const data = await axios.post<UserProfileToken>(api + "login_check", {
-      username: username,
+      email: email,
       password: password,
     });
     return data;
