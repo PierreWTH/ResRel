@@ -1,15 +1,17 @@
-import './App.css'
+import "./App.css";
+import { Outlet } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from 'react-toastify';
-import { UserProvider } from './Context/userAuth';
+import { ToastContainer } from "react-toastify";
+import { UserProvider } from "./Context/useAuth";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <UserProvider>
         <ToastContainer />
+        <Outlet />
       </UserProvider>
-    </div>
+    </>
   );
 }
 
