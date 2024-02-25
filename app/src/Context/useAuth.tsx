@@ -60,7 +60,7 @@ export const UserProvider = ({ children }: Props) => {
           setUser(UserObj!);
           toast.success("Connexion réussie !");
           // Redirect user
-          navigate("/home");
+          navigate("/");
         }
       })
       .catch((e) => toast.warning("Error: " + e));
