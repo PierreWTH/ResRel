@@ -15,7 +15,7 @@ const Navbar = (props: Props) => {
       </div>
       {isLoggedIn() ? (
         <div className="links">
-          <p> Bienvenue, {user?.email} </p>
+          <p> Bienvenue, {user?.username} </p>
           <a onClick={logoutUser}>Se déconnecter</a>
         </div>
       ) : (
