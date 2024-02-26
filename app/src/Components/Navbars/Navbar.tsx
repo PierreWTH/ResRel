@@ -8,7 +8,7 @@ const Navbar = (props: Props) => {
   const { isLoggedIn, user, logoutUser } = useAuth();
   return (
     <div>
-      <h1> This is a navbar</h1>
+      <h1> Ceci est une navbar</h1>
       {isLoggedIn() ? (
         <div>
           <p> Bienvenue, {user?.email} </p>
