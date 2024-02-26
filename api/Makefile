@@ -41,6 +41,10 @@ composer-update: ## Update dependencies
 ## —— Tests ——
 
 all-tests: ## Run tests
+	$(MAKE) database-drop-test
+	$(MAKE) database-create-test
+	$(MAKE) database-migrate-test
+	$(MAKE) database-fixtures-load-test
 	$(EXEC) -c "bin/phpunit"
 
 ## —— 📊 Database ——
