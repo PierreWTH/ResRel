@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Context/useAuth";
 import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 
 type Props = {};
 
@@ -18,7 +19,7 @@ const validation = Yup.object().shape({
 });
 
 const LoginPage = (props: Props) => {
-  const { loginUser } = useAuth();
+  const { loginUser, isLoggedIn } = useAuth();
   const {
     register,
     handleSubmit,
@@ -28,7 +29,9 @@ const LoginPage = (props: Props) => {
   const handleLogin = (form: LoginFormsInputs) => {
     loginUser(form.email, form.password);
   };
-  return (
+  return isLoggedIn() ? (
+    <Navigate to="/" replace />
+  ) : (
     <section>
       <h1>Connexion</h1>
       <form onSubmit={handleSubmit(handleLogin)}>
