@@ -5,17 +5,19 @@ namespace App\Services;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 use function PHPUnit\Framework\throwException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserService{
 
     public function __construct(
         private UserRepository $userRepository, 
         private UserPasswordHasherInterface $passwordHasher,
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        private Security $security
         ){
         }
 
@@ -40,6 +42,20 @@ class UserService{
         $userArray = $user->toResource();
 
         return $userArray;
+    }
+
+    public function getSelf()
+    {
+        /** @var User */
+        $user = $this->security->getUser();
+
+        $userData = [
+            'id' => $user->getId(),
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail(),
+        ];
+
+        return $userData;
     }
 
 }

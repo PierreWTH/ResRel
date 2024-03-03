@@ -26,4 +26,17 @@ class UserController extends AbstractController
         }
 
     }
+
+    #[Route('/me', methods: 'get')]
+    public function getMe(UserService $userService)
+    {
+        try{
+            $user = $userService->getSelf(); 
+            
+            return new JsonResponse($user, 200);
+        } catch (\Exception $e) {
+            return new JsonResponse(['code' => $e->getCode(), 'message' => $e->getMessage()], 500);
+        }
+
+    }
 }

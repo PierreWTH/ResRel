@@ -9,7 +9,7 @@ function App() {
     <>
       <UserProvider>
         <Navbar />
-        <ToastContainer hideProgressBar={true}></ToastContainer>
+        <ToastContainer></ToastContainer>
         <Outlet />
       </UserProvider>
     </>
