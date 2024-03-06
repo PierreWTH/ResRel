@@ -68,9 +68,6 @@ database-create: ## Create database
 database-migration: ## Make migration
 	$(EXEC) -c "bin/console make:migration"
 
-migration: ## Alias : database-migration
-	$(EXEC) -c "bin/console database-migration"
-
 database-migrate: ## Migrate migrations
 	$(EXEC) -c "bin/console d:m:m --no-interaction"
 
@@ -79,8 +76,6 @@ migrate: ## Alias : database-migrate
 
 database-fixtures-load: ## Load fixtures
 	$(EXEC) -c "bin/console d:f:l --no-interaction"
-
-
 
 fixtures: ## Alias : database-fixtures-load
 	$(EXEC) -c "bin/console database-fixtures-load"
@@ -99,6 +94,10 @@ database-migrate-test: ## Migrate migrations
 database-fixtures-load-test: ## Load test fixtures
 	$(EXEC) -c "bin/console d:f:l --env=test --no-interaction"
 
+## —— 📊 Database test ——
+
+entity: ## Make a new entity
+	$(EXEC) -c "bin/console make:entity"
 
 ## —— 🛠️  Others ——
 help: ## List of commands
