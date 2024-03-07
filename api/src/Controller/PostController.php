@@ -26,4 +26,18 @@ class PostController extends AbstractController
         }
 
     }
+
+    #[Route('/{id}',methods: 'delete')]
+    public function deletePost(PostService $postService, int $id)
+    {
+        try{
+            
+            $response = $postService->deletePost($id); 
+            
+            return new JsonResponse($response, 200);
+        } catch (\Exception $e) {
+            return new JsonResponse(['code' => $e->getCode(), 'message' => $e->getMessage()], 500);
+        }
+
+    }
 }

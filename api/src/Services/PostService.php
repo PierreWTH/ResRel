@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PostService{
 
@@ -30,6 +31,21 @@ class PostService{
         $postArray = $post->toResource();
 
         return $postArray;
+    }
+
+    public function deletePost(Int $id) 
+    {   
+        $post = $this->postRepository->find($id);
+
+        if(!$post){
+            throw new \Exception('Post not found', 404);
+        }
+
+        $this->entityManager->remove($post);
+
+        $this->entityManager->flush($post);
+
+        return new JsonResponse(['message' => 'Post deleted'], 200);
     }
 
 }
