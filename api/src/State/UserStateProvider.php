@@ -5,6 +5,7 @@ namespace App\State;
 use App\Repository\UserRepository;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\State\ProviderInterface;
 use App\ApiResource\User as UserResource;
 
@@ -29,5 +30,16 @@ final class UserStateProvider implements ProviderInterface
             
             return $resourceUsers;
         }
-    }   
+
+        if ($operation instanceof Get) {
+            $user = $this->userRepository->find($uriVariables['id']);
+        
+            if(!$user){
+                throw new \Exception('User not found', 404);
+            }
+
+            return $user->toResource();
+        
+        }
+    }
 }
