@@ -5,6 +5,7 @@ namespace App\State;
 use App\Repository\PostRepository;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\State\ProviderInterface;
 use App\ApiResource\Post as PostResource;
 
@@ -29,6 +30,17 @@ final class PostStateProvider implements ProviderInterface
             }
 
             return $resourcePosts;
+        }
+
+        if ($operation instanceof Get) {
+            $post = $this->postRepository->find($uriVariables['id']);
+        
+            if(!$post){
+                throw new \Exception('Post not found', 404);
+            }
+
+            return $post->toResource();
+        
         }
     }   
 }
