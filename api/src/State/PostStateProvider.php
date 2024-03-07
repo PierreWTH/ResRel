@@ -21,13 +21,14 @@ final class PostStateProvider implements ProviderInterface
             
             $posts = $this->postRepository->findAll();
 
-            $resourceUsers = [];
+            $resourcePosts = [];
+
             
-            foreach($posts as $user){
-                $resourcePosts[] = $user->toResource();
+            foreach($posts as $post){
+                $resourcePosts[] = $post->toResource();
             }
-            
-            return $resourceUsers;
+
+            return $resourcePosts;
         }
     }   
 }
