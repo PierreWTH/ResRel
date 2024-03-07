@@ -21,6 +21,10 @@ class Post
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,13 +56,24 @@ class Post
 
     public function toResource(): PostResource
     {
-        $userResource = new PostResource();
-        $userResource->id = $this->getId();
-        $userResource->title = $this->getTitle();
-        $userResource->content = $this->getContent();
+        $postResource = new PostResource();
+        $postResource->id = $this->getId();
+        $postResource->title = $this->getTitle();
+        $postResource->content = $this->getContent();
+        $postResource->user[] = $this->getUser()->toResource();
 
+        return $postResource;
+    }
 
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
 
-        return $userResource;
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
+
+        return $this;
     }
 }
