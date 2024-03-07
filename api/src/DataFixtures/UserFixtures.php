@@ -16,6 +16,10 @@ class UserFixtures extends Fixture
         $this->userPasswordHasher = $userPasswordHasher;
     }
 
+    // Add references to share fixtures with PostFixtures
+    public const ADMIN_REFERENCE = 'admin';
+    public const USER_REFERENCE = 'user';
+
     public function load(ObjectManager $manager): void
     {
         // Create a user
@@ -27,6 +31,9 @@ class UserFixtures extends Fixture
         $user->setFirstname("Walter");
         $user->setPassword($this->userPasswordHasher->hashPassword($user, "password"));
         $manager->persist($user);
+        $manager->flush();
+        
+        $this->addReference(self::USER_REFERENCE, $user);
         
         // Create a user with admin role
         $userAdmin = new User();
@@ -37,7 +44,8 @@ class UserFixtures extends Fixture
         $userAdmin->setFirstname("Jessy");
         $userAdmin->setPassword($this->userPasswordHasher->hashPassword($userAdmin, "password"));
         $manager->persist($userAdmin);
-
         $manager->flush();
-   }
+
+        $this->addReference(self::ADMIN_REFERENCE, $userAdmin);
+    }
 }
