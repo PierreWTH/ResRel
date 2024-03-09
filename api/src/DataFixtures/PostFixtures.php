@@ -14,7 +14,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
     {
         $post = new Post();
         $post->setTitle("Mon premier post - Lorem Elsass ipsum");
-        $post->setContent("Lorem Elsass ipsum Salut bisamme id, risus, pellentesque Verdammi purus aliquam Huguette ch'ai nüdle leverwurscht Kabinetpapier vulputate Pellentesque adipiscing nullam Oberschaeffolsheim Gal. hopla rhoncus hopla sed geïz schneck  Mauris varius amet tchao bissame");
+        $post->setContent("Lorem Elsass ipsum Salut bisamme id, risus, pellentesque Verdammi.");
         $post->setUser($this->getReference(UserFixtures::USER_REFERENCE));
         $manager->persist($post);
 
