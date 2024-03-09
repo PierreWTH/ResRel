@@ -70,7 +70,7 @@ class UserTest extends ApiTestCase
     /**
      * @test
      */
-    public function admin_can_delete_a_user(): void
+    public function admin_can_modify_a_user(): void
     {
         $client = self::createClient();
 
@@ -99,7 +99,7 @@ class UserTest extends ApiTestCase
      /**
      * @test
      */
-    public function admin_can_modify_a_user(): void
+    public function admin_can_delete_a_user(): void
     {
         $client = self::createClient();
 
