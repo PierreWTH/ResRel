@@ -33,6 +33,29 @@ class PostService{
         return $postArray;
     }
 
+    public function patchPost(Int $id, Array $data) 
+    {   
+        $post = $this->postRepository->find($id);
+
+        if(!$post){
+            throw new \Exception('Post not found', 404);
+        }
+
+        if (isset($data['title'])) {
+            $post->setTitle($data['title']);
+        }
+    
+        if (isset($data['content'])) {
+            $post->setContent($data['content']);
+        }
+    
+        $this->entityManager->persist($post);
+
+        $this->entityManager->flush($post);
+
+        return $post->toResource();
+    }
+
     public function deletePost(Int $id) 
     {   
         $post = $this->postRepository->find($id);
@@ -45,7 +68,7 @@ class PostService{
 
         $this->entityManager->flush($post);
 
-        return new JsonResponse(['message' => 'Post deleted'], 200);
+        return ['message' => 'Post deleted'];
     }
 
 }

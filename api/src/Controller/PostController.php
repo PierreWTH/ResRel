@@ -40,4 +40,19 @@ class PostController extends AbstractController
         }
 
     }
+
+    #[Route('/{id}',methods: 'patch')]
+    public function patchPost(PostService $postService, int $id, Request $request)
+    {
+        try{
+            $data = $request->toArray();
+
+            $response = $postService->patchPost($id, $data); 
+            
+            return new JsonResponse($response, 200);
+        } catch (\Exception $e) {
+            return new JsonResponse(['code' => $e->getCode(), 'message' => $e->getMessage()], 500);
+        }
+
+    }
 }

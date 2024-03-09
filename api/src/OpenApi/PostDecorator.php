@@ -86,6 +86,39 @@ class PostDecorator implements OpenApiFactoryInterface
             );
         $openApi->getPaths()->addPath('/posts', $postPathItem);
 
+        // Add the patch operation
+        $postPathItem = $openApi->getPaths()->getPath('/posts/{id}')
+            ->withPatch(
+                new Operation(
+                    operationId: 'PatchPost',
+                    summary: 'Modify a post',
+                    requestBody: new Model\RequestBody(
+                        content: new ArrayObject([
+                            'application/json' => [
+                                'schema' => [
+                                    '$ref' => '#/components/schemas/Post',
+                                ],
+                            ],
+                        ]),
+                    ),
+                    tags: ['Post'],
+                    responses: [
+                        '200' => [
+                            'description' => 'Modify a post',
+                            'content' => [
+                                'application/json' => [
+                                    'schema' => [
+                                        '$ref' => '#/components/schemas/Post',
+                                    ]
+                                ],
+                            ],
+                        ],
+                    ],
+                    security: [],
+                )
+            );
+        $openApi->getPaths()->addPath('/posts/{id}', $postPathItem);
+
         return $openApi;
 
     }
