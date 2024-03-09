@@ -9,7 +9,7 @@ use ApiPlatform\OpenApi\Model\PathItem;
 use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Factory\OpenApiFactoryInterface;
 
-class UserDecorator implements OpenApiFactoryInterface 
+class PostDecorator implements OpenApiFactoryInterface 
 {
     public function __construct(private OpenApiFactoryInterface $decorated)
     {
@@ -20,11 +20,11 @@ class UserDecorator implements OpenApiFactoryInterface
         $openApi = ($this->decorated)($context);
 
         // Add the delete operation
-        $deletePathItem = $openApi->getPaths()->getPath('/users/{id}')
+        $deletePathItem = $openApi->getPaths()->getPath('/posts/{id}')
             ->withDelete(
                 new Operation(
-                    operationId: 'DeleteUser',
-                    summary: 'Delete user',
+                    operationId: 'DeletePost',
+                    summary: 'Delete a post',
                     parameters: [
                         new Model\Parameter(
                             name: 'id',
@@ -35,14 +35,14 @@ class UserDecorator implements OpenApiFactoryInterface
                             ],
                         ),
                     ],
-                    tags: ['User'],
+                    tags: ['Post'],
                     responses: [
                         '200' => [
-                            'description' => 'Delete user',
+                            'description' => 'Delete post',
                             'content' => [
                                 'application/json' => [
                                     'schema' => [
-                                        '$ref' => '#/components/schemas/User',
+                                        '$ref' => '#/components/schemas/Post',
                                     ]
                                 ]
                             ]
@@ -51,31 +51,31 @@ class UserDecorator implements OpenApiFactoryInterface
                     security: [],
                 )
             );
-        $openApi->getPaths()->addPath('/users/{id}', $deletePathItem);
+        $openApi->getPaths()->addPath('/posts/{id}', $deletePathItem);
         
         // Add the post operation
-        $postPathItem = $openApi->getPaths()->getPath('/users')
+        $postPathItem = $openApi->getPaths()->getPath('/posts')
             ->withPost(
                 new Operation(
-                    operationId: 'PostUser',
-                    summary: 'Create user',
+                    operationId: 'PostPost',
+                    summary: 'Create a post',
                     requestBody: new Model\RequestBody(
                         content: new ArrayObject([
                             'application/json' => [
                                 'schema' => [
-                                    '$ref' => '#/components/schemas/User',
+                                    '$ref' => '#/components/schemas/Post',
                                 ],
                             ],
                         ]),
                     ),
-                    tags: ['User'],
+                    tags: ['Post'],
                     responses: [
                         '200' => [
-                            'description' => 'Create user',
+                            'description' => 'Create post',
                             'content' => [
                                 'application/json' => [
                                     'schema' => [
-                                        '$ref' => '#/components/schemas/User',
+                                        '$ref' => '#/components/schemas/Post',
                                     ]
                                 ],
                             ],
@@ -84,7 +84,7 @@ class UserDecorator implements OpenApiFactoryInterface
                     security: [],
                 )
             );
-        $openApi->getPaths()->addPath('/users', $postPathItem);
+        $openApi->getPaths()->addPath('/posts', $postPathItem);
 
         return $openApi;
 

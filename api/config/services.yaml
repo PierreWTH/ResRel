@@ -33,7 +33,12 @@ services:
         }
 
   #OpenApi custom documentation
-  App\OpenApi\OpenApiFactory:
+  App\OpenApi\UserDecorator:
     decorates: "api_platform.openapi.factory"
-    arguments: ['@App\OpenApi\OpenApiFactory.inner']
+    arguments: ['@App\OpenApi\UserDecorator.inner']
+    autoconfigure: false
+
+  App\OpenApi\PostDecorator:
+    decorates: "api_platform.openapi.factory"
+    arguments: ['@App\OpenApi\PostDecorator.inner']
     autoconfigure: false
