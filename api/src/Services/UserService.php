@@ -9,6 +9,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 use function PHPUnit\Framework\throwException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserService{
@@ -42,6 +43,31 @@ class UserService{
         $userArray = $user->toResource();
 
         return $userArray;
+    }
+
+    public function deleteUser(Int $id) 
+    {   
+        $user = $this->userRepository->find($id);
+
+        if(!$user){
+            throw new \Exception('User not found', 404);
+        }
+
+        $userPosts = $user->getPosts();
+
+        if($userPosts){
+            foreach($userPosts as $post){
+                $post->setUser(null);
+            }
+        }
+
+        $this->entityManager->flush();
+
+        $this->entityManager->remove($user);
+
+        $this->entityManager->flush($user);
+
+        return ['message' => 'User deleted'];
     }
 
     public function getSelf()

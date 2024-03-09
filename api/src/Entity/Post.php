@@ -22,7 +22,7 @@ class Post
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $User = null;
 
     public function getId(): ?int

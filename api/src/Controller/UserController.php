@@ -27,6 +27,20 @@ class UserController extends AbstractController
 
     }
 
+    #[Route('/{id}',methods: 'delete')]
+    public function deletePost(UserService $postService, int $id)
+    {
+        try{
+            
+            $response = $postService->deleteUser($id); 
+
+            return new JsonResponse($response, 200);
+        } catch (\Exception $e) {
+            return new JsonResponse(['code' => $e->getCode(), 'message' => $e->getMessage()], 500);
+        }
+
+    }
+
     #[Route('/me', methods: 'get')]
     public function getMe(UserService $userService)
     {
