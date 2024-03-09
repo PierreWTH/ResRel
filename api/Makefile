@@ -94,7 +94,7 @@ database-migrate-test: ## Migrate migrations
 database-fixtures-load-test: ## Load test fixtures
 	$(EXEC) -c "bin/console d:f:l --env=test --no-interaction"
 
-## —— 📊 Database test ——
+## —— Entity ——
 
 entity: ## Make a new entity
 	$(EXEC) -c "bin/console make:entity"
