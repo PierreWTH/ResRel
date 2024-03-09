@@ -66,6 +66,37 @@ class UserService{
         return ['message' => 'User deleted'];
     }
 
+    public function patchUser(Int $id, Array $data) 
+    {   
+        $user = $this->userRepository->find($id);
+
+        if(!$user){
+            throw new \Exception('user not found', 404);
+        }
+
+        if (isset($data['username'])) {
+            $user->setUsername($data['username']);
+        }
+    
+        if (isset($data['firstname'])) {
+            $user->setFirstname($data['firstname']);
+        }
+
+        if (isset($data['lastname'])) {
+            $user->setLastname($data['lastname']);
+        }
+
+        if (isset($data['email'])) {
+            $user->setEmail($data['email']);
+        }
+    
+        $this->entityManager->persist($user);
+
+        $this->entityManager->flush($user);
+
+        return $user->toResource();
+    }
+
     public function getSelf()
     {
         /** @var User */

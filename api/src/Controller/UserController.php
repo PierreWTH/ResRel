@@ -28,11 +28,11 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}',methods: 'delete')]
-    public function deletePost(UserService $postService, int $id)
+    public function deleteUser(UserService $userService, int $id)
     {
         try{
             
-            $response = $postService->deleteUser($id); 
+            $response = $userService->deleteUser($id); 
 
             return new JsonResponse($response, 200);
         } catch (\Exception $e) {
@@ -48,6 +48,21 @@ class UserController extends AbstractController
             $user = $userService->getSelf(); 
             
             return new JsonResponse($user, 200);
+        } catch (\Exception $e) {
+            return new JsonResponse(['code' => $e->getCode(), 'message' => $e->getMessage()], 500);
+        }
+
+    }
+
+    #[Route('/{id}',methods: 'patch')]
+    public function patchUser(UserService $userService, int $id, Request $request)
+    {
+        try{
+            $data = $request->toArray();
+
+            $response = $userService->patchUser($id, $data); 
+            
+            return new JsonResponse($response, 200);
         } catch (\Exception $e) {
             return new JsonResponse(['code' => $e->getCode(), 'message' => $e->getMessage()], 500);
         }
