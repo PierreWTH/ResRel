@@ -19,14 +19,16 @@ class UserTest extends ApiTestCase
         $client = self::createClient();
 
         // Get a token 
+        $token = $this->loginAsAdmin();
 
         $response = $client->request('GET', '/users', [
+            'auth_bearer' => $token,
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ]
-
+                'Accept' => 'application/json'
+            ],
         ]);
+
 
         $users = $response->toArray();
 
@@ -38,25 +40,87 @@ class UserTest extends ApiTestCase
     /**
      * @test
      */
-    public function can_create_new_user(): void
+    public function admin_can_create_new_user(): void
     {
         $client = self::createClient();
 
         // Get a token 
 
-        $email = 'skyler@resrel.com';
-        $client->request('POST', '/users', [
+        $token = $this->loginAsAdmin();
+
+        $response = $client->request('POST', '/users', [
+            'auth_bearer' => $token,
+            'headers' => ['Content-Type' => 'application/json'],
             'json' => $this->makeUserData()
+        ]);
+
+        $email = 'skyler@resrel.com';
+
+        $this->assertResponseIsSuccessful(200);
+
+        $user = $this->getEntityManager()->getRepository(User::class)->findOneBy([
+            'email' => $response->toArray()['email']
+        ]);
+
+        $this->assertNotNull($user, 'User creation failed');
+
+
+    }
+
+    /**
+     * @test
+     */
+    public function admin_can_delete_a_user(): void
+    {
+        $client = self::createClient();
+
+        // Get a token 
+
+        $user = $this->getEntityManager()->getRepository(User::class)->findOneBy([
+            'email' => 'user@resrel.com']);
+
+        $token = $this->loginAsAdmin();
+
+        $response = $client->request('PATCH', '/users/' . $user->getId(), [
+            'auth_bearer' => $token,
+            'headers' => ['Content-Type' => 'application/json'],
+            'json' => [
+                'username' => 'TEST']
+        ]);
+
+        $this->assertResponseIsSuccessful(200);
+
+        $username = $response->toArray()['username'];
+
+        $this->assertEquals($username, 'TEST');
+
+    }
+
+     /**
+     * @test
+     */
+    public function admin_can_modify_a_user(): void
+    {
+        $client = self::createClient();
+
+        // Get a token 
+
+        $user = $this->getEntityManager()->getRepository(User::class)->findOneBy([
+            'email' => 'user@resrel.com']);
+
+        $token = $this->loginAsAdmin();
+
+        $response = $client->request('DELETE', '/users/' . $user->getId(), [
+            'auth_bearer' => $token,
+            'headers' => ['Content-Type' => 'application/json'],
         ]);
 
         $this->assertResponseIsSuccessful(200);
 
         $user = $this->getEntityManager()->getRepository(User::class)->findOneBy([
-            'email' => $email
-        ]);
+            'email' => 'user@resrel.com']);
 
-        $this->assertNotNull($user, 'User creation failed');
-
+        $this->assertNull($user, 'User deletion failed');
 
     }
 
@@ -77,6 +141,22 @@ class UserTest extends ApiTestCase
         return self::$kernel->getContainer()
             ->get('doctrine')
             ->getManager();
+    }
+
+    protected function loginAsAdmin(): string
+    {
+        $client = self::createClient();
+
+        $response = $client->request('POST', '/login_check', [
+            'json' => [
+                'email' => 'admin@resrel.com',
+                'password' => 'password'
+            ]
+        ]);
+
+        $data = $response->toArray();
+
+        return $data['token'];
     }
 
     
