@@ -86,6 +86,39 @@ class UserDecorator implements OpenApiFactoryInterface
             );
         $openApi->getPaths()->addPath('/users', $postPathItem);
 
+        // Add the patch operation
+        $patchPathItem = $openApi->getPaths()->getPath('/users/{id}')
+            ->withPatch(
+                new Operation(
+                    operationId: 'PatchUser',
+                    summary: 'Modify a user',
+                    requestBody: new Model\RequestBody(
+                        content: new ArrayObject([
+                            'application/json' => [
+                                'schema' => [
+                                    '$ref' => '#/components/schemas/User',
+                                ],
+                            ],
+                        ]),
+                    ),
+                    tags: ['User'],
+                    responses: [
+                        '200' => [
+                            'description' => 'Modify a user',
+                            'content' => [
+                                'application/json' => [
+                                    'schema' => [
+                                        '$ref' => '#/components/schemas/User',
+                                    ]
+                                ],
+                            ],
+                        ],
+                    ],
+                    security: [],
+                )
+            );
+        $openApi->getPaths()->addPath('/users/{id}', $patchPathItem);
+
         return $openApi;
 
     }
