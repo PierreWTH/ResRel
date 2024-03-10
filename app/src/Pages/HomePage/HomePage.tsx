@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ItemList } from "../../Components/ItemList/ItemList";
+import axios from "axios";
 
-type Props = {};
+const Props = {};
 
-const HomePage = (props: Props) => {
+export default function HomePage() {
   return (
     <section>
       <h1>Home</h1>
       <p>Bienvenue sur votre application ReSources Relationnelles</p>
     </section>
   );
-};
-
-export default HomePage;
+}
