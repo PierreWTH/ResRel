@@ -1,23 +1,18 @@
-import "./ItemList.css";
+import { GetItem } from "../../Types/Item";
+import Item from "../Item/Item";
 
 interface ItemListProps {
-  items?: Array<Item> | null;
-}
-
-interface Item {
-  title: string;
-  body: string;
+  items: GetItem[];
 }
 
 export const ItemList = ({ items }: ItemListProps) => {
   return (
-    <div className="item-wrapper">
-      {items?.map((item, index) => (
-        <div key={index} className="item">
-          <h2 className="title">{item.title}</h2>
-          <p>{item.body}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      {items
+        ? items.map((item) => {
+            return <Item item={item} key={item.id} />;
+          })
+        : ""}
+    </>
   );
 };
