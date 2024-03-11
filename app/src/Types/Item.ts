@@ -1,10 +1,10 @@
-export type GetPost = {
+export type GetItem = {
   id: number;
   title: string;
   content: string;
 };
 
-export type PostPost = {
+export type PostItem = {
   title: string;
   content: string;
 };

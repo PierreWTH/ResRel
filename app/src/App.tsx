@@ -9,8 +9,8 @@ function App() {
     <>
       <UserProvider>
         <Navbar />
-        <ToastContainer></ToastContainer>
         <Outlet />
+        <ToastContainer />
       </UserProvider>
     </>
   );
