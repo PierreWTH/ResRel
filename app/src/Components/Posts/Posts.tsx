@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "../../Services/PostService";
-import { toast } from "react-toastify";
 import { ItemList } from "../ItemList/ItemList";
 import { GetItem } from "../../Types/Item";
-
+import { useAuth } from "../../Context/useAuth";
 const Posts = () => {
   const [posts, setPosts] = useState<GetItem[] | null>(null);
+  // to be sure that user is authenticated before fetching data
+  const { isReady } = useAuth();
 
   useEffect(() => {
-    getItems();
-  }, []);
+    if (isReady) {
+      getItems();
+    }
+  }, [isReady]);
 
   const getItems = () => {
     getPosts().then((res) => {
