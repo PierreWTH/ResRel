@@ -15,6 +15,7 @@ type UserContextType = {
   loginUser: (email: string, password: string) => void;
   logoutUser: () => void;
   isLoggedIn: () => boolean;
+  isReady: boolean;
 };
 
 type Props = { children: React.ReactNode };
@@ -37,7 +38,6 @@ export const UserProvider = ({ children }: Props) => {
     if (user && token) {
       setUser(JSON.parse(user));
       setToken(token);
-      ``;
       // Set the token in the axios header for all future requests
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
@@ -109,6 +109,7 @@ export const UserProvider = ({ children }: Props) => {
         logoutUser,
         isLoggedIn,
         registerUser,
+        isReady,
       }}
     >
       {isReady ? children : null}
