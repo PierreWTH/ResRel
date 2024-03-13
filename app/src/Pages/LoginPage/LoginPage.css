@@ -1,0 +1,29 @@
+.login-wrapper {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input > label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.login-wrapper > form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error {
+  border: 1px solid red;
+}

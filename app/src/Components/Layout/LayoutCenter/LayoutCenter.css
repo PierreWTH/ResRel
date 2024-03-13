@@ -1,0 +1,9 @@
+.container {
+  width: 100vw;
+  height: calc(100vh - 104px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
