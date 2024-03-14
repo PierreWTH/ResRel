@@ -3,6 +3,7 @@ import { getPosts } from "../../Services/PostService";
 import { ItemList } from "../ItemList/ItemList";
 import { GetItem } from "../../Types/Item";
 import { useAuth } from "../../Context/useAuth";
+import "./Posts.css";
 const Posts = () => {
   const [posts, setPosts] = useState<GetItem[] | null>(null);
   // to be sure that user is authenticated before fetching data
@@ -20,7 +21,7 @@ const Posts = () => {
     });
   };
   return (
-    <div className="flex flex-col">
+    <div className="posts-wrapper">
       <ItemList items={posts!} />
     </div>
   );
