@@ -19,8 +19,17 @@ final class PostStateProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         if ($operation instanceof GetCollection) {
+
+            if(isset($context['filters']['limit'])){
+                $limit = $context['filters']['limit'];
+
+                $posts = $this->postRepository->findBy([], [], $limit);
+            }
+            else {
+                $posts = $this->postRepository->findAll();
+            }
+
             
-            $posts = $this->postRepository->findAll();
 
             $resourcePosts = [];
 
