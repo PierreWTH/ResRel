@@ -1,18 +1,23 @@
-import { GetItem } from "../../Types/Item";
+import { forwardRef } from "react";
 import "./InputText.css";
 
 type Props = {
   label: string;
-  value: string;
+  password?: boolean;
 };
 
-const InputText = ({ label, value }: Props) => {
-  return (
+const InputText = forwardRef(
+  ({ label, password = false, ...props }: Props, ref: any) => (
     <div className="input-wrapper">
       <label>{label}</label>
-      <input className="input" type="text" value={value} />
+      <input
+        ref={ref}
+        className="input"
+        type={password ? "password" : "text"}
+        {...props}
+      />
     </div>
-  );
-};
+  )
+);
 
 export default InputText;
