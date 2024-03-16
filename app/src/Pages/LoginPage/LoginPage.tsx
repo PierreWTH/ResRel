@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Context/useAuth";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
+import InputText from "../../Components/InputText/InputText";
+import "./LoginPage.css";
 
 type Props = {};
 
@@ -32,22 +34,15 @@ const LoginPage = (props: Props) => {
   return isLoggedIn() ? (
     <Navigate to="/" replace />
   ) : (
-    <section>
+    <section className="login-wrapper">
       <h1>Connexion</h1>
       <form onSubmit={handleSubmit(handleLogin)}>
         <div>
-          <label htmlFor="email">Pseudo</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Email"
-            {...register("email")}
-          />
+          <InputText label="Email" {...register("email")} />
           {errors.email ? <p>{errors.email.message}</p> : ""}
         </div>
         <div>
-          <label htmlFor="password">Mot de passe</label>
-          <input type="password" id="password" {...register("password")} />
+          <InputText label="Password" password {...register("password")} />
           {errors.password ? <p>{errors.password.message}</p> : ""}
         </div>
         <div>

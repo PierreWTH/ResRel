@@ -7,17 +7,6 @@
   gap: 20px;
 }
 
-.input {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.input > label {
-  font-size: 18px;
-  font-weight: 500;
-}
-
 .login-wrapper > form {
   display: flex;
   flex-direction: column;
