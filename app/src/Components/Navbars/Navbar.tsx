@@ -11,10 +11,14 @@ const Navbar = (props: Props) => {
   return (
     <nav>
       <div>
-        <img src={logo} alt="logo" />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       {isLoggedIn() ? (
         <div className="links">
+          <Link to="/posts"> Tous les posts </Link>
+          <Link to="/createpost">Créer un post </Link>
           <p> Bienvenue, {user?.username} </p>
           <a onClick={logoutUser}>Se déconnecter</a>
         </div>
