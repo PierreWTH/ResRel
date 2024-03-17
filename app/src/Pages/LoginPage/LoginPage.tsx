@@ -1,11 +1,13 @@
-import React from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Context/useAuth";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import InputText from "../../Components/InputText/InputText";
 import "./LoginPage.css";
+import Button from "../../Components/Button/Button";
+import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn/LayoutTwoColumn";
+import loginSvg from "../../assets/login.svg";
 
 type Props = {};
 
@@ -34,26 +36,40 @@ const LoginPage = (props: Props) => {
   return isLoggedIn() ? (
     <Navigate to="/" replace />
   ) : (
-    <section className="login-wrapper">
-      <h1>Connexion</h1>
-      <form onSubmit={handleSubmit(handleLogin)}>
-        <div>
-          <InputText label="Email" {...register("email")} />
-          {errors.email ? <p>{errors.email.message}</p> : ""}
+    <LayoutTwoColumn
+      children1={
+        <div className="login-wrapper">
+          <h1>Connexion</h1>
+          <form onSubmit={handleSubmit(handleLogin)}>
+            <div>
+              <InputText
+                label="Email"
+                {...register("email")}
+                placeholder="Votre adresse mail"
+              />
+              {errors.email ? <p>{errors.email.message}</p> : ""}
+            </div>
+            <div>
+              <InputText
+                label="Password"
+                password
+                placeholder="Votre mot de passe"
+                {...register("password")}
+              />
+              {errors.password ? <p>{errors.password.message}</p> : ""}
+            </div>
+            <div>
+              <a href="#">Mot de passe oublié ?</a>
+            </div>
+            <Button submit label="Se connecter " />
+            <p>
+              Pas encore inscrit ? <Link to="/register">S'inscrire</Link>
+            </p>
+          </form>
         </div>
-        <div>
-          <InputText label="Password" password {...register("password")} />
-          {errors.password ? <p>{errors.password.message}</p> : ""}
-        </div>
-        <div>
-          <a href="#">Forgot password?</a>
-        </div>
-        <button type="submit">Sign in</button>
-        <p>
-          Pas encore inscrit ? <a href="#">S'inscrire</a>
-        </p>
-      </form>
-    </section>
+      }
+      children2={<img className="login-svg" src={loginSvg} alt="logo" />}
+    />
   );
 };
 
