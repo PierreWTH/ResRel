@@ -5,5 +5,5 @@ interface LayoutPaddingProps {
 }
 
 export const LayoutPadding = ({ children }: LayoutPaddingProps) => {
-  return <section className="container">{children}</section>;
+  return <section className="padding-container">{children}</section>;
 };

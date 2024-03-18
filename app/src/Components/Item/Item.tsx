@@ -1,4 +1,5 @@
 import { GetItem } from "../../Types/Item";
+import Button from "../Button/Button";
 import "./Item.css";
 
 type Props = {
@@ -11,6 +12,7 @@ const Item = ({ item }: Props) => {
       <div className="item">
         <h2 className="title">{item.title}</h2>
         <p>{item.content}</p>
+        <Button label="Découvrir" />
       </div>
     </div>
   );

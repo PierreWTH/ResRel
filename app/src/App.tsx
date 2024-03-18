@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from "./Context/useAuth";
 import Navbar from "./Components/Navbars/Navbar";
+import { LayoutPadding } from "./Components/Layout/LayoutPadding/LayoutPadding";
 function App() {
   return (
     <>

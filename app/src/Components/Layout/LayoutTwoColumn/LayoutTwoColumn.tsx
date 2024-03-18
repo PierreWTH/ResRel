@@ -10,7 +10,7 @@ export const LayoutTwoColumn = ({
   children2,
 }: LayoutTwoColumnProps) => {
   return (
-    <section className="container">
+    <section className="column-container">
       <div className="column">{children1}</div>
       <div className="column">{children2}</div>
     </section>

@@ -3,7 +3,12 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Context/useAuth";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
+import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn/LayoutTwoColumn";
+import InputText from "../../Components/InputText/InputText";
+import Button from "../../Components/Button/Button";
+import registerSvg from "../../assets/register.svg";
+import "../LoginPage/LoginPage.css";
 
 type Props = {};
 
@@ -33,43 +38,57 @@ const RegisterPage = (props: Props) => {
   return isLoggedIn() ? (
     <Navigate to="/" replace />
   ) : (
-    <section>
-      <h1>Inscription</h1>
-      <form onSubmit={handleSubmit(handleLogin)}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Email"
-            {...register("email")}
-          />
-          {errors.email ? <p>{errors.email.message}</p> : ""}
+    <LayoutTwoColumn
+      children1={
+        <div className="login-info">
+          <h1> Rejoignez une communauté soudée et tissez des relations. </h1>
+          <p>
+            Des centaines d'articles, de conseils, d'astuces, et de personnes
+            prêtent à tisser des liens vous attendent.
+          </p>
+          <img className="login-svg" src={registerSvg} alt="logo" />
         </div>
-        <div>
-          <label htmlFor="username">Pseudo</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="username"
-            {...register("username")}
-          />
-          {errors.username ? <p>{errors.username.message}</p> : ""}
+      }
+      children2={
+        <div className="login-wrapper">
+          <h1>Inscription</h1>
+          <form onSubmit={handleSubmit(handleLogin)}>
+            <div>
+              <InputText
+                label="Email"
+                {...register("email")}
+                placeholder="Votre adresse mail"
+              />
+              {errors.email ? <p>{errors.email.message}</p> : ""}
+            </div>
+            <div>
+              <InputText
+                label="Pseudo"
+                {...register("username")}
+                placeholder="Votre pseudo"
+              />
+              {errors.email ? <p>{errors.email.message}</p> : ""}
+            </div>
+            <div>
+              <InputText
+                label="Mot de passe"
+                password
+                placeholder="Votre mot de passe"
+                {...register("password")}
+              />
+              {errors.password ? <p>{errors.password.message}</p> : ""}
+            </div>
+            <div>
+              <a href="#">Mot de passe oublié ?</a>
+            </div>
+            <Button submit label="Se connecter " />
+            <p>
+              Pas encore inscrit ? <Link to="/register">S'inscrire</Link>
+            </p>
+          </form>
         </div>
-        <div>
-          <label htmlFor="password">Mot de passe</label>
-          <input type="password" id="password" {...register("password")} />
-          {errors.password ? <p>{errors.password.message}</p> : ""}
-        </div>
-        <div>
-          <a href="#">Déja un compte ? Se connecter</a>
-        </div>
-        <button type="submit">S'inscrire</button>
-        <p>
-          Pas encore inscrit ? <a href="#">S'inscrire</a>
-        </p>
-      </form>
-    </section>
+      }
+    />
   );
 };
 

@@ -5,5 +5,5 @@ interface LayoutCenterProps {
 }
 
 export const LayoutCenter = ({ children }: LayoutCenterProps) => {
-  return <section className="container">{children}</section>;
+  return <section className="center-container">{children}</section>;
 };

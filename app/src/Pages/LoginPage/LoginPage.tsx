@@ -68,7 +68,13 @@ const LoginPage = (props: Props) => {
           </form>
         </div>
       }
-      children2={<img className="login-svg" src={loginSvg} alt="logo" />}
+      children2={
+        <div className="login-info">
+          <h1> Bon retour parmis nous ! </h1>
+          <p>Des nouveautés vous attendent !</p>
+          <img className="login-svg" src={loginSvg} alt="logo" />
+        </div>
+      }
     />
   );
 };

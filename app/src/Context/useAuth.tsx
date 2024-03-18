@@ -80,7 +80,7 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(UserObj));
           setToken(res?.data.token);
           setUser(UserObj!);
-          toast.success("Login success ! ");
+          toast.success("Connexion réussie ! ");
           // Redirect user
           navigate("/");
         }
