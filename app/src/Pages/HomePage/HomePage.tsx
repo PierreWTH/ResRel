@@ -22,8 +22,7 @@ export default function HomePage() {
         </p>
       </div>
       <h2> Les posts les plus réçents : </h2>
-      <Posts />
-      <button onClick={toastMessage}></button>
+      <Posts limit={4} />
     </LayoutPadding>
   );
 }

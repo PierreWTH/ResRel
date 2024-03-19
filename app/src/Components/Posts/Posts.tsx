@@ -4,7 +4,12 @@ import { ItemList } from "../ItemList/ItemList";
 import { GetItem } from "../../Types/Item";
 import { useAuth } from "../../Context/useAuth";
 import "./Posts.css";
-const Posts = () => {
+
+type PostsProps = {
+  limit?: number;
+};
+
+const Posts: React.FC<PostsProps> = ({ limit }) => {
   const [posts, setPosts] = useState<GetItem[] | null>(null);
   // to be sure that user is authenticated before fetching data
   const { isReady } = useAuth();
@@ -16,13 +21,13 @@ const Posts = () => {
   }, [isReady]);
 
   const getItems = () => {
-    getPosts().then((res) => {
+    getPosts(limit).then((res) => {
       setPosts(res?.data!);
     });
   };
   return (
     <div className="posts-wrapper">
-      <ItemList items={posts!} />
+      <ItemList items={posts!} limit={limit} />
     </div>
   );
 };

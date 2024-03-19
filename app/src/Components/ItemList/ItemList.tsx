@@ -3,6 +3,7 @@ import Item from "../Item/Item";
 
 interface ItemListProps {
   items: GetItem[];
+  limit?: number;
 }
 
 export const ItemList = ({ items }: ItemListProps) => {

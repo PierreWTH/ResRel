@@ -4,9 +4,10 @@ import { GetItem, PostItem } from "../Types/Item";
 
 const api = "/api/posts";
 
-export const getPosts = async () => {
+export const getPosts = async (limit?: number) => {
   try {
-    const data = await axios.get<GetItem[]>(api);
+    const url = limit ? `${api}?limit=${limit}` : api;
+    const data = await axios.get<GetItem[]>(url);
     return data;
   } catch (error) {
     handleError(error);
