@@ -1,3 +1,4 @@
+import { FaArrowRight } from "react-icons/fa";
 import { GetItem } from "../../Types/Item";
 import Button from "../Button/Button";
 import "./Item.css";
@@ -12,7 +13,7 @@ const Item = ({ item }: Props) => {
       <div className="item">
         <h2 className="title">{item.title}</h2>
         <p>{item.content}</p>
-        <Button label="Découvrir" />
+        <Button label="Découvrir" Icon={FaArrowRight} />
       </div>
     </div>
   );

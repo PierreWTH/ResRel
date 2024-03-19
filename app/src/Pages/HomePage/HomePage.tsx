@@ -13,8 +13,13 @@ export default function HomePage() {
   return (
     <LayoutPadding>
       <div className="header">
-        <h1>Home</h1>
-        <p>Bienvenue sur votre application ReSources Relationnelles</p>
+        <h1>Bienvenue sur votre application ReSources Relationnelles</h1>
+        <p>
+          Ici, vous pouvez partager vos expériences, demander de l'aide et
+          communiquer avec d'autres personnes qui partagent vos intérêts.
+          Rejoignez-nous et faites partie d'une communauté qui valorise le
+          soutien mutuel et l'échange d'idées.
+        </p>
       </div>
       <h2> Les posts les plus réçents : </h2>
       <Posts />
