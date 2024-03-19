@@ -98,6 +98,7 @@ export const UserProvider = ({ children }: Props) => {
     setUser(null);
     setToken("");
     navigate("/");
+    toast.success("Vous avez été déconnecté. ");
   };
 
   return (
