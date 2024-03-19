@@ -61,7 +61,7 @@ const LoginPage = (props: Props) => {
             <div>
               <a href="#">Mot de passe oublié ?</a>
             </div>
-            <Button submit label="Se connecter " />
+            <Button submit label="Se connecter " color="white" />
             <p>
               Pas encore inscrit ? <Link to="/register">S'inscrire</Link>
             </p>

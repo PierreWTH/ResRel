@@ -23,6 +23,7 @@ export default function HomePage() {
       </div>
       <h2> Les posts les plus réçents : </h2>
       <Posts limit={4} />
+      <div className="benefits"></div>
     </LayoutPadding>
   );
 }

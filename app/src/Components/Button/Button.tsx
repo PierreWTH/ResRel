@@ -6,11 +6,21 @@ type ButtonProps = {
   submit?: boolean;
   label: string;
   Icon?: React.ComponentType;
+  color?: string;
 };
 
-const Button: React.FC<ButtonProps> = ({ label, submit = false, Icon }) => {
+const Button: React.FC<ButtonProps> = ({
+  label,
+  submit = false,
+  Icon,
+  color,
+}) => {
   return (
-    <button className="custom-button" type={submit ? "submit" : "button"}>
+    <button
+      className="custom-button"
+      type={submit ? "submit" : "button"}
+      style={{ backgroundColor: color }}
+    >
       {label}
       {Icon && <Icon />}
     </button>
