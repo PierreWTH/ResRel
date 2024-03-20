@@ -40,6 +40,8 @@ export const UserProvider = ({ children }: Props) => {
       setToken(token);
       // Set the token in the axios header for all future requests
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    } else {
+      navigate("/login");
     }
     setIsReady(true);
   }, []);
@@ -52,23 +54,17 @@ export const UserProvider = ({ children }: Props) => {
     await registerAPI(email, username, password)
       .then((res) => {
         if (res) {
-          localStorage.setItem("token", res?.data.token);
-          const UserObj = {
-            email: res?.data.email,
-            username: res?.data.username,
-          };
-          localStorage.setItem("user", JSON.stringify(UserObj));
-          setToken(res?.data.token);
-          setUser(UserObj!);
-          toast.success("Connexion réussie !");
-          // Redirect user
-          navigate("/");
+          loginUser(email, password, true);
         }
       })
       .catch((e) => toast.warning("Error: " + e));
   };
 
-  const loginUser = async (email: string, password: string) => {
+  const loginUser = async (
+    email: string,
+    password: string,
+    isRegistering?: boolean
+  ) => {
     await loginAPI(email, password)
       .then((res) => {
         if (res) {
@@ -80,7 +76,9 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(UserObj));
           setToken(res?.data.token);
           setUser(UserObj!);
-          toast.success("Connexion réussie ! ");
+          toast.success(
+            isRegistering ? "Inscription réussie !" : "Connexion réussie !"
+          );
           // Redirect user
           navigate("/");
         }

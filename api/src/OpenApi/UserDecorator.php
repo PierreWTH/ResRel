@@ -54,7 +54,7 @@ class UserDecorator implements OpenApiFactoryInterface
         $openApi->getPaths()->addPath('/users/{id}', $deletePathItem);
         
         // Add the post operation
-        $postPathItem = $openApi->getPaths()->getPath('/users')
+        $postPathItem = (new Model\PathItem())
             ->withPost(
                 new Operation(
                     operationId: 'PostUser',
@@ -84,7 +84,7 @@ class UserDecorator implements OpenApiFactoryInterface
                     security: [],
                 )
             );
-        $openApi->getPaths()->addPath('/users', $postPathItem);
+        $openApi->getPaths()->addPath('/users/register', $postPathItem);
 
         // Add the patch operation
         $patchPathItem = $openApi->getPaths()->getPath('/users/{id}')

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/users')]
 class UserController extends AbstractController
 {   
-    #[Route(methods: 'post')]
+    #[Route('/register', methods: 'post')]
     public function postUser(UserService $userService, Request $request)
     {
         try{

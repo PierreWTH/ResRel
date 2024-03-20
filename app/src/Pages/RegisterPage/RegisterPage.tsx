@@ -78,13 +78,7 @@ const RegisterPage = (props: Props) => {
               />
               {errors.password ? <p>{errors.password.message}</p> : ""}
             </div>
-            <div>
-              <a href="#">Mot de passe oublié ?</a>
-            </div>
-            <Button submit label="Se connecter " />
-            <p>
-              Pas encore inscrit ? <Link to="/register">S'inscrire</Link>
-            </p>
+            <Button submit label="S'inscrire" color="white" />
           </form>
         </div>
       }
