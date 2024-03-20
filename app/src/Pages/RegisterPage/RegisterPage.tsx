@@ -19,9 +19,11 @@ type RegisterFormsInputs = {
 };
 
 const validation = Yup.object().shape({
-  email: Yup.string().required("Email is required"),
-  password: Yup.string().required("Password is required"),
-  username: Yup.string().required("Username is required"),
+  email: Yup.string()
+    .email("Email invalide.")
+    .required("Veuillez renseigner un email."),
+  password: Yup.string().required("Veuillez renseigner un mot de passe."),
+  username: Yup.string().required("Veuillez renseigner un pseudo."),
 });
 
 const RegisterPage = (props: Props) => {
@@ -67,7 +69,7 @@ const RegisterPage = (props: Props) => {
                 {...register("username")}
                 placeholder="Votre pseudo"
               />
-              {errors.email ? <p>{errors.email.message}</p> : ""}
+              {errors.username ? <p>{errors.username.message}</p> : ""}
             </div>
             <div>
               <InputText

@@ -18,8 +18,8 @@ type LoginFormsInputs = {
 
 // Validate inputs with Yup
 const validation = Yup.object().shape({
-  email: Yup.string().required("Email is required"),
-  password: Yup.string().required("Password is required"),
+  email: Yup.string().required("Veuillez renseigner un email."),
+  password: Yup.string().required("Veuillez renseigner un mot de passe."),
 });
 
 const LoginPage = (props: Props) => {
