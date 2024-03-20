@@ -43,3 +43,12 @@
   gap: 50px;
   padding: 50px;
 }
+
+.login-wrapper > form > button:hover {
+  color: black;
+}
+
+.login-wrapper a {
+  color: white;
+  text-decoration: underline;
+}

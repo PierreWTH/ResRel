@@ -17,6 +17,7 @@ const Navbar = (props: Props) => {
       </div>
       {isLoggedIn() ? (
         <div className="links">
+          <Link to="/">Acceuil </Link>
           <Link to="/posts"> Tous les posts </Link>
           <Link to="/createpost">Créer un post </Link>
           <p> Bienvenue, {user?.username} </p>
