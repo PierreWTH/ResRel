@@ -6,6 +6,8 @@ import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import ProtectedRoutes from "./ProtectedRoute";
 import PostsPage from "../Pages/PostsPage/PostsPage";
 import CreatePostPage from "../Pages/CreatePostPage/CreatePostPage";
+import PostDetailPage from "../Pages/PostDetailPage/PostDetailPage";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <CreatePostPage />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/post/:id",
+        element: (
+          <ProtectedRoutes>
+            <PostDetailPage />
           </ProtectedRoutes>
         ),
       },

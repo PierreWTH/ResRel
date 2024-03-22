@@ -2,12 +2,21 @@ import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
 import { GetItem, PostItem } from "../Types/Item";
 
-const api = "/api/posts";
+const api = "/api";
 
 export const getPosts = async (limit?: number) => {
   try {
-    const url = limit ? `${api}?limit=${limit}` : api;
+    const url = limit ? `${api}/posts?limit=${limit}` : api + "/posts";
     const data = await axios.get<GetItem[]>(url);
+    return data;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const getPost = async (id?: string) => {
+  try {
+    const data = await axios.get<GetItem>(api + "/posts/" + id);
     return data;
   } catch (error) {
     handleError(error);
@@ -16,7 +25,7 @@ export const getPosts = async (limit?: number) => {
 
 export const postPost = async (title: string, content: string) => {
   try {
-    const data = await axios.post<PostItem>(api, {
+    const data = await axios.post<PostItem>(api + "/posts", {
       title: title,
       content: content,
     });
