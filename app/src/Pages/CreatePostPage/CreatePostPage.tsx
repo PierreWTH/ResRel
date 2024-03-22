@@ -1,3 +1,5 @@
+import PostForm from "../../Components/PostForm/PostForm";
+
 const Props = {};
 
 export default function CreatePostPage() {
@@ -7,6 +9,7 @@ export default function CreatePostPage() {
         <h1>Créer un post</h1>
         <p>Commencer a partager avec la communauté ResRel ! </p>
       </div>
+      <PostForm />
     </section>
   );
 }
