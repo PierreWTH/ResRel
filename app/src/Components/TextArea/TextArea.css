@@ -1,0 +1,18 @@
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.textarea-wrapper > textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.textarea-wrapper > label {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
