@@ -23,12 +23,26 @@ export const getPost = async (id?: string) => {
   }
 };
 
-export const postPost = async (title: string, content: string) => {
+export const postPost = async (
+  title: string,
+  description: string,
+  content: string
+) => {
   try {
     const data = await axios.post<PostItem>(api + "/posts", {
       title: title,
       content: content,
+      description: description,
     });
+    return data;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const deletePost = async (id?: string) => {
+  try {
+    const data = await axios.delete(api + "/posts/" + id);
     return data;
   } catch (error) {
     handleError(error);

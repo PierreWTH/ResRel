@@ -22,6 +22,7 @@ class PostService{
         $post = new Post();
 
         $post->setTitle($data['title']);
+        $post->setDescription($data['description']);
         $post->setContent($data['content']);
         $post->setUser($this->security->getUser());
 
