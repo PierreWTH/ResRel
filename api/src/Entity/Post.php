@@ -25,6 +25,9 @@ class Post
     #[ORM\JoinColumn(nullable: true)]
     private ?User $User = null;
 
+    #[ORM\Column(length: 150)]
+    private ?string $description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,7 @@ class Post
         $postResource = new PostResource();
         $postResource->id = $this->getId();
         $postResource->title = $this->getTitle();
+        $postResource->description = $this->getDescription();
         $postResource->content = $this->getContent();
         $postResource->user[] = $this->getUser()->toResource();
 
@@ -73,6 +77,18 @@ class Post
     public function setUser(?User $User): static
     {
         $this->User = $User;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

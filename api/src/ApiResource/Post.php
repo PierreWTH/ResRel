@@ -23,5 +23,7 @@ class Post
 
     public string $content;
 
+    public string $description;
+
     public array $user;
 }

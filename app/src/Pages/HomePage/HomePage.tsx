@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-import PostForm from "../../Components/PostForm/PostForm";
 import Posts from "../../Components/Posts/Posts";
 import "./HomePage.css";
 import { LiaUserFriendsSolid } from "react-icons/lia";

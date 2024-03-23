@@ -13,7 +13,7 @@ const Item = ({ item }: Props) => {
     <div className="item-wrapper">
       <div className="item">
         <h2 className="title">{item.title}</h2>
-        <p>{item.content}</p>
+        <p>{item.description}</p>
         <Link to={`/post/${item.id}`}>
           <Button label="Découvrir" Icon={FaArrowRight} />
         </Link>
