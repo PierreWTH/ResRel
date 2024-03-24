@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { Label } from "../../../Style/components";
+import { Label } from "@style/components";
 import styled from "styled-components";
 
 type Props = {

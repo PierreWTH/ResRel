@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getPosts } from "../../Services/PostService";
-import { ItemList } from "./ItemList";
-import { GetItem } from "../../Types/Item";
-import { useAuth } from "../../Context/useAuth";
+import { getPosts } from "@services/PostService";
+import { ItemList } from "@components/Composite/ItemList";
+import { GetItem } from "@type/Item";
+import { useAuth } from "@context/useAuth";
 import styled from "styled-components";
 
 type PostsProps = {

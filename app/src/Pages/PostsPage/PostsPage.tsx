@@ -1,4 +1,4 @@
-import Posts from "../../Components/Composite/Posts";
+import Posts from "@components/Composite/Posts";
 import "./PostsPage.css";
 
 const Props = {};

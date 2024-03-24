@@ -1,13 +1,12 @@
-import React from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../Context/useAuth";
+import { useAuth } from "@context/useAuth";
 import { useForm } from "react-hook-form";
 import { Navigate, Link } from "react-router-dom";
-import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn";
-import InputText from "../../Components/Common/Inputs/InputText";
-import Button from "../../Components/Common/CommonButton";
-import registerSvg from "../../assets/register.svg";
+import { LayoutTwoColumn } from "@components/Layout/LayoutTwoColumn";
+import InputText from "@components/common/Inputs/InputText";
+import Button from "@components/common/CommonButton";
+import registerSvg from "@assets/register.svg";
 import "../LoginPage/LoginPage.css";
 
 type Props = {};

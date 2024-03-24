@@ -1,10 +1,10 @@
-import Posts from "../../Components/Composite/Posts";
+import Posts from "@components/Composite/Posts";
 import "./HomePage.css";
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import { RiMessage2Line } from "react-icons/ri";
 import { CiTextAlignCenter } from "react-icons/ci";
-import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn";
-import homeSvg from "../../assets/home.svg";
+import { LayoutTwoColumn } from "@components/Layout/LayoutTwoColumn";
+import homeSvg from "@assets/home.svg";
 const Props = {};
 
 export default function HomePage() {

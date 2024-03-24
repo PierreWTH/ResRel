@@ -1,10 +1,10 @@
-import InputText from "../Common/Inputs/InputText";
-import TextArea from "../Common/Inputs/TextArea";
-import Button from "../Common/CommonButton";
+import InputText from "@components/common/Inputs/InputText";
+import TextArea from "@components/common/Inputs/TextArea";
+import Button from "@components/common/CommonButton";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { postPost } from "../../Services/PostService";
+import { postPost } from "@services/PostService";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 

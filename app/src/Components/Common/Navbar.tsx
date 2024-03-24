@@ -1,6 +1,6 @@
-import { useAuth } from "../../Context/useAuth";
+import { useAuth } from "@context/useAuth";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "@assets/logo.png";
 import styled from "styled-components";
 
 type Props = {};

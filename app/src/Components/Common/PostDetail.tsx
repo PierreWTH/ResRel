@@ -1,4 +1,4 @@
-import { GetItem } from "../../Types/Item";
+import { GetItem } from "@type/Item";
 import styled from "styled-components";
 
 type Props = {

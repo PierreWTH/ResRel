@@ -1,7 +1,7 @@
-import PostDetail from "../../Components/Common/PostDetail";
-import { GetItem } from "../../Types/Item";
+import PostDetail from "@components/common/PostDetail";
+import { GetItem } from "@type/Item";
 import { useEffect, useState } from "react";
-import { getPost } from "../../Services/PostService";
+import { getPost } from "@services/PostService";
 import { useParams } from "react-router-dom";
 
 type Props = {};
