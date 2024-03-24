@@ -1,5 +1,5 @@
 import { GetItem } from "@type/Item";
-import Item from "@components/common/CommonItem";
+import Item from "@components/Common/CommonItem";
 
 interface ItemListProps {
   items: GetItem[];

@@ -1,6 +1,6 @@
 import { FaArrowRight } from "react-icons/fa";
 import { GetItem } from "@type/Item";
-import Button from "@components/common/CommonButton";
+import Button from "@components/Common/CommonButton";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 

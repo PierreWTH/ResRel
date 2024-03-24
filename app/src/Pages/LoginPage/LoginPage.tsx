@@ -3,9 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "@context/useAuth";
 import { useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router-dom";
-import InputText from "@components/common/Inputs/InputText";
+import InputText from "@components/Common/Inputs/InputText";
 import "./LoginPage.css";
-import Button from "@components/common/CommonButton";
+import Button from "@components/Common/CommonButton";
 import { LayoutTwoColumn } from "@components/Layout/LayoutTwoColumn";
 import loginSvg from "@assets/login.svg";
 

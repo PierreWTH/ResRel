@@ -1,4 +1,4 @@
-import PostDetail from "@components/common/PostDetail";
+import PostDetail from "@components/Common/PostDetail";
 import { GetItem } from "@type/Item";
 import { useEffect, useState } from "react";
 import { getPost } from "@services/PostService";

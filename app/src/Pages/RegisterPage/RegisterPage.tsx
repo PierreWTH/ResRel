@@ -4,8 +4,8 @@ import { useAuth } from "@context/useAuth";
 import { useForm } from "react-hook-form";
 import { Navigate, Link } from "react-router-dom";
 import { LayoutTwoColumn } from "@components/Layout/LayoutTwoColumn";
-import InputText from "@components/common/Inputs/InputText";
-import Button from "@components/common/CommonButton";
+import InputText from "@components/Common/Inputs/InputText";
+import Button from "@components/Common/CommonButton";
 import registerSvg from "@assets/register.svg";
 import "../LoginPage/LoginPage.css";
 

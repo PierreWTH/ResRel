@@ -11,7 +11,8 @@
       "@style/*": ["./src/Style/*"],
       "@type/*": ["./src/Types/*"],
       "@services/*": ["./src/Services/*"],
-      "@context/*": ["./src/Context/*"]
+      "@context/*": ["./src/Context/*"],
+      "@pages/*": ["./src/Pages/*"]
     },
 
     /* Bundler mode */

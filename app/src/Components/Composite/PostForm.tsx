@@ -1,6 +1,6 @@
-import InputText from "@components/common/Inputs/InputText";
-import TextArea from "@components/common/Inputs/TextArea";
-import Button from "@components/common/CommonButton";
+import InputText from "@components/Common/Inputs/InputText";
+import TextArea from "@components/Common/Inputs/TextArea";
+import Button from "@components/Common/CommonButton";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
