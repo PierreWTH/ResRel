@@ -1,4 +1,4 @@
-import PostForm from "../../Components/PostForm/PostForm";
+import PostForm from "../../Components/Composite/PostForm";
 import "./CreatePostPage.css";
 
 const Props = {};

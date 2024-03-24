@@ -1,5 +1,5 @@
 import { GetItem } from "../../Types/Item";
-import Item from "../Item/Item";
+import Item from "../Common/CommonItem";
 
 interface ItemListProps {
   items: GetItem[];

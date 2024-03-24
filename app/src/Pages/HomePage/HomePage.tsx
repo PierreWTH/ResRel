@@ -1,9 +1,9 @@
-import Posts from "../../Components/Posts/Posts";
+import Posts from "../../Components/Composite/Posts";
 import "./HomePage.css";
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import { RiMessage2Line } from "react-icons/ri";
 import { CiTextAlignCenter } from "react-icons/ci";
-import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn/LayoutTwoColumn";
+import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn";
 import homeSvg from "../../assets/home.svg";
 const Props = {};
 

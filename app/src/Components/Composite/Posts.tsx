@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "../../Services/PostService";
-import { ItemList } from "../ItemList/ItemList";
+import { ItemList } from "./ItemList";
 import { GetItem } from "../../Types/Item";
 import { useAuth } from "../../Context/useAuth";
-import "./Posts.css";
+import styled from "styled-components";
 
 type PostsProps = {
   limit?: number;
@@ -26,10 +26,17 @@ const Posts: React.FC<PostsProps> = ({ limit }) => {
     });
   };
   return (
-    <div className="posts-wrapper">
+    <Wrapper>
       <ItemList items={posts!} limit={limit} />
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+`;
 
 export default Posts;

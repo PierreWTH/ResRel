@@ -4,9 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Context/useAuth";
 import { useForm } from "react-hook-form";
 import { Navigate, Link } from "react-router-dom";
-import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn/LayoutTwoColumn";
-import InputText from "../../Components/InputText/InputText";
-import Button from "../../Components/Button/Button";
+import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn";
+import InputText from "../../Components/Common/Inputs/InputText";
+import Button from "../../Components/Common/CommonButton";
 import registerSvg from "../../assets/register.svg";
 import "../LoginPage/LoginPage.css";
 

@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
-import "./InputText.css";
+import { Label } from "../../../Style/components";
+import styled from "styled-components";
 
 type Props = {
   label: string;
@@ -9,17 +10,29 @@ type Props = {
 
 const InputText = forwardRef(
   ({ label, placeholder, password = false, ...props }: Props, ref: any) => (
-    <div className="input-wrapper">
-      <label>{label}</label>
-      <input
+    <Wrapper>
+      <Label>{label}</Label>
+      <Input
         ref={ref}
         className="input"
         type={password ? "password" : "text"}
         placeholder={placeholder}
         {...props}
       />
-    </div>
+    </Wrapper>
   )
 );
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const Input = styled.input`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
 
 export default InputText;

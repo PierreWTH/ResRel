@@ -3,10 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Context/useAuth";
 import { useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router-dom";
-import InputText from "../../Components/InputText/InputText";
+import InputText from "../../Components/Common/Inputs/InputText";
 import "./LoginPage.css";
-import Button from "../../Components/Button/Button";
-import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn/LayoutTwoColumn";
+import Button from "../../Components/Common/CommonButton";
+import { LayoutTwoColumn } from "../../Components/Layout/LayoutTwoColumn";
 import loginSvg from "../../assets/login.svg";
 
 type Props = {};
