@@ -40,6 +40,34 @@ class UserTest extends ApiTestCase
     /**
      * @test
      */
+    public function admin_can_retrieve_user_by_id(): void
+    {
+        $client = self::createClient();
+
+        // Get a token 
+        $token = $this->loginAsAdmin();
+
+        $user = $this->getEntityManager()->getRepository(User::class)->findOneBy([
+            'email' => 'user@resrel.com']);
+
+            $response = $client->request('GET', '/users/' . $user->getId(), [
+                'auth_bearer' => $token,
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'
+                ],
+            ]);
+
+
+        $retrievedUser = $response->toArray();
+
+        $this->assertResponseIsSuccessful(200);
+        $this->assertEquals($user->getEmail(), $retrievedUser['email'], "Incorrect user retrieved");
+    }
+
+    /**
+     * @test
+     */
     public function admin_can_create_new_user(): void
     {
         $client = self::createClient();
