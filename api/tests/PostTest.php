@@ -40,6 +40,60 @@ class PostTest extends ApiTestCase
     /**
      * @test
      */
+    public function admin_can_limit_retrieved_posts(): void
+    {
+        $client = self::createClient();
+
+        // Get a token 
+        $token = $this->loginAsAdmin();
+
+        $response = $client->request('GET', '/posts?limit=5', [
+            'auth_bearer' => $token,
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'
+            ],
+        ]);
+
+
+        $posts = $response->toArray();
+
+        $this->assertResponseIsSuccessful(200);
+        $this->assertCount(5, $posts, "Incorrect number of posts retrieved");
+
+    }
+    /**
+     * @test
+     */
+    public function admin_can_retrieve_post_by_id(): void
+    {
+        $client = self::createClient();
+
+        // Get a token 
+        $token = $this->loginAsAdmin();
+
+        $post = $this->getEntityManager()->getRepository(Post::class)->findOneBy([
+            'title' => 'Mon premier post - Lorem Elsass ipsum']);
+
+            $response = $client->request('GET', '/posts/' . $post->getId(), [
+                'auth_bearer' => $token,
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'
+                ],
+            ]);
+
+
+        $posts = $response->toArray();
+
+        $this->assertResponseIsSuccessful(200);
+        $this->assertEquals('Mon premier post - Lorem Elsass ipsum', $posts['title'], "Incorrect post retrieved");
+
+    }
+
+    /**
+     * @test
+     */
     public function admin_can_create_new_post(): void
     {
         $client = self::createClient();
@@ -123,6 +177,8 @@ class PostTest extends ApiTestCase
         $this->assertNull($post, 'Post deletion failed');
 
     }
+
+    
 
     protected function makePostData()
     {
