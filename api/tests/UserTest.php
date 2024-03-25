@@ -48,7 +48,7 @@ class UserTest extends ApiTestCase
 
         $token = $this->loginAsAdmin();
 
-        $response = $client->request('POST', '/users', [
+        $response = $client->request('POST', '/users/register', [
             'auth_bearer' => $token,
             'headers' => ['Content-Type' => 'application/json'],
             'json' => $this->makeUserData()

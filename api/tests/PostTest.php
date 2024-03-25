@@ -33,7 +33,7 @@ class PostTest extends ApiTestCase
         $posts = $response->toArray();
 
         $this->assertResponseIsSuccessful(200);
-        $this->assertCount(2, $posts, "Incorrect number of posts retrieved");
+        $this->assertCount(8, $posts, "Incorrect number of posts retrieved");
 
     }
 
@@ -128,6 +128,7 @@ class PostTest extends ApiTestCase
     {
         return [
             'title' => 'Title test',
+            'description' => 'Description test',
             'content' => 'Content test',
         ];
 
