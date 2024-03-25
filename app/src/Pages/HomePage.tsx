@@ -5,7 +5,7 @@ import { CiTextAlignCenter } from "react-icons/ci";
 import { LayoutTwoColumn } from "@components/Layout/LayoutTwoColumn";
 import homeSvg from "@assets/home.svg";
 import styled from "styled-components";
-import { TitleH1, TitleH2 } from "@style/components";
+import { TitleH1, TitleH2 } from "@style/Components";
 
 const Props = {};
 

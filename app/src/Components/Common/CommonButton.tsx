@@ -5,27 +5,24 @@ type ButtonProps = {
   submit?: boolean;
   label: string;
   Icon?: React.ComponentType;
-  color?: string;
+  primary?: boolean;
 };
 
 const CommonButton: React.FC<ButtonProps> = ({
   label,
   submit = false,
   Icon,
-  color,
+  primary = false,
 }) => {
   return (
-    <Button
-      type={submit ? "submit" : "button"}
-      style={{ backgroundColor: color }}
-    >
+    <Button $primary={primary} type={submit ? "submit" : "button"}>
       {label}
       {Icon && <Icon />}
     </Button>
   );
 };
 
-const Button = styled.button`
+const Button = styled.button<{ $primary?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,14 +32,16 @@ const Button = styled.button`
   border-radius: 5px;
   font-size: 15px;
   width: 100%;
-  background-color: transparent;
+  background-color: ${(props) => (props.$primary ? "#6b63fe" : "white")};
   border: 2px solid #6b63fe;
-  color: #6b63fe;
+  color: ${(props) => (props.$primary ? "white" : "#6b63fe")};
   transition: 0.2s;
+  cursor: pointer;
 
   &:hover {
-    background-color: #6b63fe;
-    color: white;
+    background-color: ${(props) => (props.$primary ? "" : "#6b63fe")};
+    color: ${(props) => (props.$primary ? "" : "white")};
+    border: 2px solid white;
   }
 `;
 

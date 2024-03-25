@@ -17,3 +17,12 @@ export const TitleH2 = styled.h2`
   margin-bottom: 2rem;
   font-weight: 400;
 `;
+
+export const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+  gap: 1.5rem;
+`;

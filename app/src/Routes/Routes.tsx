@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import LoginPage from "@pages/LoginPage/LoginPage";
+import LoginPage from "@pages/LoginPage";
 import HomePage from "@pages/HomePage";
-import RegisterPage from "@pages/RegisterPage/RegisterPage";
+import RegisterPage from "@pages/RegisterPage";
 import ProtectedRoutes from "./ProtectedRoute";
 import PostsPage from "@pages/PostsPage";
 import CreatePostPage from "@pages/CreatePostPage";
