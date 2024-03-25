@@ -35,14 +35,23 @@ export const UserProvider = ({ children }: Props) => {
   useEffect(() => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
+
     if (user && token) {
-      setUser(JSON.parse(user));
-      setToken(token);
-      // Set the token in the axios header for all future requests
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      const decodedJwt = JSON.parse(atob(token.split(".")[1]));
+
+      if (decodedJwt.exp * 1000 < Date.now()) {
+        // Le token est expiré
+        logoutUser();
+      } else {
+        // Le token est valide
+        setUser(JSON.parse(user));
+        setToken(token);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      }
     } else {
       navigate("/login");
     }
+
     setIsReady(true);
   }, []);
 
