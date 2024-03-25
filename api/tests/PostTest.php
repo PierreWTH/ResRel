@@ -84,10 +84,10 @@ class PostTest extends ApiTestCase
             ]);
 
 
-        $posts = $response->toArray();
+        $retrievedPost = $response->toArray();
 
         $this->assertResponseIsSuccessful(200);
-        $this->assertEquals('Mon premier post - Lorem Elsass ipsum', $posts['title'], "Incorrect post retrieved");
+        $this->assertEquals('Mon premier post - Lorem Elsass ipsum', $retrievedPost['title'], "Incorrect post retrieved");
 
     }
 
