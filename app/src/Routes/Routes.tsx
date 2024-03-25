@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import LoginPage from "../Pages/LoginPage/LoginPage";
-import HomePage from "../Pages/HomePage/HomePage";
-import RegisterPage from "../Pages/RegisterPage/RegisterPage";
+import LoginPage from "@pages/LoginPage";
+import HomePage from "@pages/HomePage";
+import RegisterPage from "@pages/RegisterPage";
 import ProtectedRoutes from "./ProtectedRoute";
-import PostsPage from "../Pages/PostsPage/PostsPage";
-import CreatePostPage from "../Pages/CreatePostPage/CreatePostPage";
-import PostDetailPage from "../Pages/PostDetailPage/PostDetailPage";
+import PostsPage from "@pages/PostsPage";
+import CreatePostPage from "@pages/CreatePostPage";
+import PostDetailPage from "@pages/PostDetailPage";
 
 export const router = createBrowserRouter([
   {

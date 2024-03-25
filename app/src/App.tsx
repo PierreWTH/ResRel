@@ -1,10 +1,8 @@
-import "./App.css";
 import { Outlet } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { UserProvider } from "./Context/useAuth";
-import Navbar from "./Components/Navbars/Navbar";
-import { LayoutPadding } from "./Components/Layout/LayoutPadding/LayoutPadding";
+import { UserProvider } from "@context/useAuth";
+import Navbar from "@components/Common/Navbar";
 function App() {
   return (
     <>
