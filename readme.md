@@ -11,8 +11,8 @@ Réalisé par :
 
 Il comporte :
 
-- Le back en Symfony sous forme d'API
-- Le front en react
+- Le back en Symfony sous forme d'API avec API Platform
+- Le front en react et Typescript
 - Une base de donnée MySQL
 - PHPMyAdmin
 
