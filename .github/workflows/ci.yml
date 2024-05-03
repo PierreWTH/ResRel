@@ -11,6 +11,5 @@ jobs:
         working-directory: ./api
         run: |
           cp .env.example .env
-          composer update
           composer install --ignore-platform-req=php
           php bin/phpunit
