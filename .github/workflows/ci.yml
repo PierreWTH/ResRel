@@ -4,12 +4,12 @@ on: [push]
 
 jobs:
   phpunit:
-    runs-on: ubuntu-latest
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
       - name: Setup and run tests
         working-directory: ./api
         run: |
           cp .env.example .env
-          composer install --ignore-platform-req=php
+          composer install
           php bin/phpunit
