@@ -4,12 +4,17 @@ on: [push]
 
 jobs:
   phpunit:
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      # install php 8.2, ubuntu latest have 8.1 preinstalled and app require 8.2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
       - name: Setup and run tests
         working-directory: ./api
         run: |
           cp .env.example .env
-          composer install
+          composer install --ignore-platform-req=php
           php bin/phpunit
