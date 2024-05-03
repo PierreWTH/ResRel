@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # install php 8.2, ubuntu latest have 8.1 preinstalled and app require 8.2
+      # ubuntu latest have php 8.1 preinstalled and app require 8.2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -18,3 +18,4 @@ jobs:
           cp .env.example .env
           composer install --ignore-platform-req=php
           php bin/phpunit
+      #todo - setup db
