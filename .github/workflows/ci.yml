@@ -7,10 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./api
+        working-directory: api
     steps:
       - uses: actions/checkout@v3
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - uses: php-actions/composer@v6
+      - name: Install Composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          working-directory: api
+
       - run: echo "Composer dependencies have been installed"
       - run: vendor/bin/phpunit
