@@ -11,5 +11,6 @@ jobs:
         working-directory: ./api
         run: |
           cp .env.example .env
+          composer update
           composer install --prefer-dist
           php bin/phpunit
