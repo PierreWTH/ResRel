@@ -12,5 +12,5 @@ jobs:
         run: |
           cp .env.example .env
           composer update
-          composer install --prefer-dist
+          composer install --ignore-platform-req=php
           php bin/phpunit
