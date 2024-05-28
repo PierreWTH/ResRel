@@ -5,6 +5,17 @@ on: [push]
 jobs:
   phpunit:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        # wait for db to be ready
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - uses: actions/checkout@v3
       # ubuntu latest have php 8.1 preinstalled and app require 8.2
@@ -12,6 +23,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
+
+      - name: Load fixtures
+        run: make database-init
+
       - name: Setup and run tests
         working-directory: ./api
         run: |
