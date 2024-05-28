@@ -29,6 +29,8 @@ jobs:
         run: |
           mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS test"
           mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE test"
+      - name: Generate JWT keys
+        run: php bin/console lexik:jwt:generate-keypair
 
       - name: Setup and run tests
         working-directory: ./api
