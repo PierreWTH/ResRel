@@ -26,7 +26,9 @@ jobs:
 
       - name: Load fixtures
         working-directory: ./api
-        run: make database-init
+        run: |
+          mysql -u root -ppassword -e "DROP DATABASE IF EXISTS test"
+          mysql -u root -ppassword -e "CREATE DATABASE test"
 
       - name: Setup and run tests
         working-directory: ./api
