@@ -40,6 +40,10 @@ jobs:
         working-directory: ./api
         run: php bin/console lexik:jwt:generate-keypair
 
+      - name: Start Symfony server
+        working-directory: ./api
+        run: symfony server:start --detach
+
       - name: Run tests
         working-directory: ./api
         run: php bin/phpunit
