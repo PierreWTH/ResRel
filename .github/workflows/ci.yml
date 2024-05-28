@@ -10,7 +10,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: test
+          MYSQL_DATABASE: db_resrel
         ports:
           - 3306:3306
         # wait for db to be ready
@@ -39,10 +39,6 @@ jobs:
       - name: Generate JWT keys
         working-directory: ./api
         run: php bin/console lexik:jwt:generate-keypair
-
-      - name: Start Symfony server
-        working-directory: ./api
-        run: php bin/console server:start --detach
 
       - name: Run tests
         working-directory: ./api
