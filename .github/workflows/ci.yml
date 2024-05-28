@@ -25,6 +25,7 @@ jobs:
           php-version: 8.2
 
       - name: Load fixtures
+        working-directory: ./api
         run: make database-init
 
       - name: Setup and run tests
