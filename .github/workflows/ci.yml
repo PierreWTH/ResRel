@@ -27,8 +27,8 @@ jobs:
       - name: Load fixtures
         working-directory: ./api
         run: |
-          mysql -u root -ppassword -e "DROP DATABASE IF EXISTS test"
-          mysql -u root -ppassword -e "CREATE DATABASE test"
+          mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS test"
+          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE test"
 
       - name: Setup and run tests
         working-directory: ./api
