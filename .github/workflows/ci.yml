@@ -3,7 +3,7 @@ name: ResRel CI
 on: [push]
 
 jobs:
-  phpunit:
+  unit-tests:
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -30,7 +30,7 @@ jobs:
           cp .env.example .env
           composer install --ignore-platform-req=php
 
-      - name: Setup DATABASE_URL for CI
+      - name: Setup DATABASE_URL in .env
         working-directory: ./api
         run: echo "DATABASE_URL=mysql://root:root@127.0.0.1:3306/db_resrel?serverVersion=5.7&charset=utf8mb4" >> .env
 
@@ -53,4 +53,3 @@ jobs:
       - name: Run tests
         working-directory: ./api
         run: php bin/phpunit
-      #todo - setup db
