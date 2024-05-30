@@ -10,7 +10,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: "root"
-          MYSQL_DATABASE: db_resrel_test
+          MYSQL_DATABASE: db_resrel
         ports:
           - 3306:3306
         # wait for db to be ready
@@ -37,8 +37,8 @@ jobs:
       - name: Setup DB
         working-directory: ./api
         run: |
-          mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS db_resrel"
-          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE db_resrel"
+          mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS db_resrel_test"
+          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE db_resrel_test"
 
       - name: Load fixtures
         working-directory: ./api
