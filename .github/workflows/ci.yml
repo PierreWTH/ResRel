@@ -10,7 +10,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: "root"
-          MYSQL_DATABASE: db_resrel_test
+          MYSQL_DATABASE: db_resrel
         ports:
           - 3306:3306
         # wait for db to be ready
