@@ -27,7 +27,7 @@ jobs:
       - name: Setup composer
         working-directory: ./api
         run: |
-          cp .env.example
+          cp .env.example .env
           composer install --ignore-platform-req=php
 
       - name: Setup DATABASE_URL for CI
