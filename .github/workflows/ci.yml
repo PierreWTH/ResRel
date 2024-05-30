@@ -24,17 +24,17 @@ jobs:
         with:
           php-version: 8.2
 
-      - name: Load fixtures
-        working-directory: ./api
-        run: |
-          php bin/console d:m:m --no-interaction --env=test
-          php bin/console d:f:l --no-interaction --env=test
-
       - name: Setup composer
         working-directory: ./api
         run: |
           cp .env.example .env
           composer install --ignore-platform-req=php
+
+      - name: Load fixtures
+        working-directory: ./api
+        run: |
+          php bin/console d:m:m --no-interaction --env=test
+          php bin/console d:f:l --no-interaction --env=test
 
       - name: Generate JWT keys
         working-directory: ./api
