@@ -31,6 +31,7 @@ jobs:
           composer install --ignore-platform-req=php
 
       - name: Setup DATABASE_URL for CI
+        working-directory: ./api
         run: echo "DATABASE_URL=mysql://root:@127.0.0.1:3306/db_resrel?serverVersion=5.7&charset=utf8mb4" > .env
 
       - name: Setup DB
