@@ -5,17 +5,6 @@ on: [push]
 jobs:
   phpunit:
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: db_resrel
-        ports:
-          - 3306:3306
-        # wait for db to be ready
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
       - uses: actions/checkout@v3
       # ubuntu latest have php 8.1 preinstalled and app require 8.2
@@ -23,12 +12,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-
-      - name: Load fixtures
-        working-directory: ./api
-        run: |
-          mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS db_resrel"
-          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE db_resrel"
 
       - name: Setup composer
         working-directory: ./api
@@ -40,7 +23,22 @@ jobs:
         working-directory: ./api
         run: php bin/console lexik:jwt:generate-keypair
 
+      - name: Create Database
+        run: |
+          mkdir -p data
+          touch data/database.sqlite
+
+      - name: Migrate database
+        working-directory: ./api
+        run: php bin/console d:m:m --no-interaction --env=test
+
+      - name: Loading fixtures
+        working-directory: ./api
+        run: php bin/console d:f:l --no-interaction --env=test
+
       - name: Run tests
         working-directory: ./api
+        env:
+          DATABASE_URL: sqlite:///%kernel.project_dir%/var/database_test.db
         run: php bin/phpunit
       #todo - setup db
