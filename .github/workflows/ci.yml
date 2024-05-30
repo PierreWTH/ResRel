@@ -26,6 +26,8 @@ jobs:
 
       - name: Setup composer
         working-directory: ./api
+        env:
+          DATABASE_URL: "mysql://root:@localhost:3306/resrel?serverVersion=5.7&charset=utf8mb4"
         run: |
           cp .env.example .env
           composer install --ignore-platform-req=php
