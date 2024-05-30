@@ -27,8 +27,8 @@ jobs:
       - name: Load fixtures
         working-directory: ./api
         run: |
-          mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS test"
-          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE test"
+          mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS db_resrel"
+          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE db_resrel"
 
       - name: Setup composer
         working-directory: ./api
