@@ -26,11 +26,15 @@ jobs:
 
       - name: Setup composer
         working-directory: ./api
-        env:
-          DATABASE_URL: "mysql://root:@localhost:3306/db_resrel?serverVersion=5.7&charset=utf8mb4"
         run: |
           cp .env.example .env
           composer install --ignore-platform-req=php
+
+      - name: Setup DB
+        working-directory: ./api
+        run: |
+          mysql -h 127.0.0.1 -u root -proot -e "DROP DATABASE IF EXISTS db_resrel"
+          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE db_resrel"
 
       - name: Load fixtures
         working-directory: ./api
