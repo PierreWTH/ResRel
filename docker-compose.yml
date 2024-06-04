@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db:
@@ -8,7 +8,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     networks:
       - dev
 
@@ -34,12 +34,15 @@ services:
       - ./api:/var/www
     networks:
       - dev
-  
+    #For xDebug
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
   app:
     image: node:latest
     container_name: app_resrel
     working_dir: /app
-    command: > 
+    command: >
       sh -c "npm i && npm run dev"
     ports:
       - "3000:3000"
